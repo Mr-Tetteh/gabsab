@@ -104,7 +104,7 @@
             <div class="text-center space-y-4">
                 <p class="text-gray-300">
                     © <span class="text-gray-400">Copyright</span>
-                    <strong class="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">TCF</strong>
+                    <strong class="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">Gabsab</strong>
                     <span class="text-gray-400">All Rights Reserved</span>
                 </p>
                 <p class="text-gray-400">

@@ -16,5 +16,8 @@
     transform: rotate(180deg);
 }
 
+* {
+    font-family: 'Montserrat', sans-serif;
+}
 
 
