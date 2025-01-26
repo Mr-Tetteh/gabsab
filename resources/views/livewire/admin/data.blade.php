@@ -6,7 +6,12 @@
             <div class="flex flex-col lg:flex-row gap-8">
 
                 <div class="lg:w-5/12">
-                    <form class="bg-white shadow-2xl rounded-xl overflow-hidden">
+                    @if (session()->has('message'))
+                        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg shadow-md">
+                            {{ session('message') }}
+                        </div>
+                    @endif
+                    <form class="bg-white shadow-2xl rounded-xl overflow-hidden" wire:submit="create">
                         <!-- Gradient Header -->
                         <div class="bg-gradient-to-r from-blue-600 to-blue-800 p-6">
                             <h2 class="text-3xl font-bold text-white text-center">Purchase Data</h2>
@@ -19,25 +24,40 @@
                                 <label class="block text-sm font-medium text-gray-700 mb-2">
                                     Data Package <span class="text-red-500">*</span>
                                 </label>
-                                <select
+                                <select wire:model="package"
                                     class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all">
                                     <option value="">Select Data Package</option>
                                     <option value="50">30 GB - GHC 50</option>
                                     <option value="100">50 GB - GHC 100</option>
                                     <option value="200">100 GB - GHC 200</option>
                                 </select>
+
+                                @error('package')
+                                <div class="text-red-600">
+
+                                    {{$message}}
+                                </div>
+                                @enderror
                             </div>
+
 
                             <!-- Phone Number -->
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-2">
                                     Phone Number <span class="text-red-500">*</span>
                                 </label>
-                                <input
-                                    type="tel"
+                                <input wire:model="number"
+                                    type="number"
                                     placeholder="Enter phone number"
                                     class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
                                 >
+
+                                @error('number')
+                                <div class="text-red-600">
+
+                                    {{$message}}
+                                </div>
+                                @enderror
                             </div>
 
                             <!-- Amount -->
@@ -46,10 +66,17 @@
                                     Amount to Pay
                                 </label>
                                 <input
+                                    wire:model="amount"
                                     type="number"
                                     placeholder="Enter amount"
                                     class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
                                 >
+                                @error('amount')
+                                <div class="text-red-600">
+
+                                    {{$message}}
+                                </div>
+                                @enderror
                             </div>
 
                             <!-- Submit Button -->
@@ -81,29 +108,43 @@
                                             Price
                                         </th>
                                         <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Reference
+                                        </th>
+                                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Validity
                                         </th>
                                     </tr>
                                     </thead>
                                     <tbody class="divide-y divide-gray-200">
+                                    @foreach($datas as $data)
                                     <tr class="hover:bg-gray-50">
-                                        <td class="px-4 py-4 whitespace-nowrap">Basic</td>
-                                        <td class="px-4 py-4 whitespace-nowrap">30 GB</td>
-                                        <td class="px-4 py-4 whitespace-nowrap">GHC 50</td>
+                                        <td class="px-4 py-4 whitespace-nowrap">
+                                            @if($data->package == '200')
+                                                Enterpise
+
+                                            @elseif($data->package == '100')
+                                                Start up
+
+                                            @elseif($data->package == '50')
+                                                Basic
+                                            @endif
+                                        </td>
+                                        <td class="px-4 py-4 whitespace-nowrap">
+                                            @if($data->package == '200')
+                                                100 GB
+
+                                            @elseif($data->package == '100')
+                                                50 GB
+
+                                            @elseif($data->package == '50')
+                                                30 GB
+                                            @endif
+                                        </td>
+                                        <td class="px-4 py-4 whitespace-nowrap">GHC  {{$data->amount}}</td>
+                                        <td class="px-4 py-4 whitespace-nowrap">{{$data->reference}}</td>
                                         <td class="px-4 py-4 whitespace-nowrap">30 Days</td>
                                     </tr>
-                                    <tr class="hover:bg-gray-50">
-                                        <td class="px-4 py-4 whitespace-nowrap">Standard</td>
-                                        <td class="px-4 py-4 whitespace-nowrap">50 GB</td>
-                                        <td class="px-4 py-4 whitespace-nowrap">GHC 100</td>
-                                        <td class="px-4 py-4 whitespace-nowrap">45 Days</td>
-                                    </tr>
-                                    <tr class="hover:bg-gray-50">
-                                        <td class="px-4 py-4 whitespace-nowrap">Premium</td>
-                                        <td class="px-4 py-4 whitespace-nowrap">100 GB</td>
-                                        <td class="px-4 py-4 whitespace-nowrap">GHC 200</td>
-                                        <td class="px-4 py-4 whitespace-nowrap">60 Days</td>
-                                    </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>

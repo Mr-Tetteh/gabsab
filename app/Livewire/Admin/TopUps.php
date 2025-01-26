@@ -15,6 +15,7 @@ class TopUps extends Component
     public $provider;
     public $phone_number;
     public $amount;
+    public $reference;
 
     protected $rules = [
         'provider' => 'required|string',
@@ -28,7 +29,10 @@ class TopUps extends Component
         $this->provider = '';
         $this->phone_number = '';
         $this->amount = '';
+        $this->reference = '';
     }
+
+
 
     public function create()
     {
@@ -38,6 +42,7 @@ class TopUps extends Component
             'user_id' => Auth::user()->id,
             'provider' => $this->provider,
             'phone_number' => $this->phone_number,
+            'reference' => $this->reference,
             'amount' => $this->amount,
         ]);
         session()->flash('message', 'Wallet loaded successfully.');

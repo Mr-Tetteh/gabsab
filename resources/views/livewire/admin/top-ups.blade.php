@@ -33,6 +33,13 @@
                                     <option value="Telecel">Telecel</option>
                                     <option value="AirtelTigo">AirtelTigo</option>
                                 </select>
+                                @error('provider')
+                                <div class="text-red-600">
+
+                                    {{$message}}
+                                </div>
+                                @enderror
+
                             </div>
 
                             <!-- Phone Number -->
@@ -46,6 +53,12 @@
                                     wire:model="phone_number"
                                     class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
                                 >
+                                @error('phone_number')
+                                <div class="text-red-600">
+
+                                    {{$message}}
+                                </div>
+                                @enderror
                             </div>
 
                             <!-- Amount -->
@@ -59,6 +72,13 @@
                                     wire:model="amount"
                                     class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
                                 >
+
+                                @error('amount')
+                                <div class="text-red-600">
+
+                                    {{$message}}
+                                </div>
+                                @enderror
                             </div>
 
                             <!-- Submit Button -->
@@ -86,6 +106,10 @@
                                         <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Phone Number
                                         </th>
+
+                                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Reference Number
+                                        </th>
                                         <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Amount
                                         </th>
@@ -97,6 +121,7 @@
                                     <tr class="hover:bg-gray-50">
                                         <td class="px-4 py-4 whitespace-nowrap">{{$wallet->provider}}</td>
                                         <td class="px-4 py-4 whitespace-nowrap">{{$wallet->phone_number}}</td>
+                                        <td class="px-4 py-4 whitespace-nowrap">{{$wallet->reference}}</td>
                                         <td class="px-4 py-4 whitespace-nowrap">GHC {{$wallet->amount}}</td>
                                     </tr>
                                     @endforeach
