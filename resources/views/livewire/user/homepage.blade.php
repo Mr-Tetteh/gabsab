@@ -3,7 +3,7 @@
         <div class="container mx-auto px-4 lg:px-8">
             <div class="flex flex-col items-center lg:flex-row lg:justify-between lg:space-x-12">
                 <div class="w-full text-center lg:w-1/2 lg:text-left">
-                    <h1 class="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-4xl font-bold tracking-tight text-transparent sm:text-5xl lg:text-6xl">
+                    <h1 class="bg-gradient-to-r from-green-400 to-yellow-500 bg-clip-text text-4xl font-bold tracking-tight text-transparent sm:text-5xl lg:text-6xl">
                         GABSAB IT SERVICES
                     </h1>
                     <p class="mt-6 text-lg text-gray-600">
@@ -20,7 +20,7 @@
                     </p>
 
 
-                    <a class="group mt-8 inline-flex items-center space-x-2 rounded-full bg-purple-600 px-8 py-4 text-white transition-all hover:bg-purple-700"
+                    <a class="group mt-8 inline-flex items-center space-x-2 rounded-full bg-teal-500 px-8 py-4 text-white transition-all hover:bg-teal-600"
                        href="#">
                         Register With Us
                         <svg class="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" fill="none"
