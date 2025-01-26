@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('wallets', function (Blueprint $table) {
+        Schema::create('data', function (Blueprint $table) {
             $table->id();
-            $table->string('provider');
-            $table->string('phone_number');
+            $table->string('package');
+            $table->string('number');
             $table->string('amount');
-            $table->longText('reference');
+            $table->string('reference');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
         });
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('wallets');
+        Schema::dropIfExists('data');
     }
 };
