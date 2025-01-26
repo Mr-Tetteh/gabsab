@@ -33,7 +33,7 @@
                                 </div>
                                 <div>
                                     <div class="text-blue-600 font-semibold">Location</div>
-                                    <div class="text-gray-600">Ejisu krapa, Ghana-Kumasi</div>
+                                    <div class="text-gray-600">Meduma, Ghana-Kumasi</div>
                                 </div>
                             </div>
                         </div>
@@ -59,7 +59,7 @@
                                 </div>
                                 <div>
                                     <div class="text-blue-600 font-semibold">Email</div>
-                                    <div class="text-gray-600">info@tabernacle.church</div>
+                                    <div class="text-gray-600">info@gabsab</div>
                                 </div>
                             </div>
                         </div>
