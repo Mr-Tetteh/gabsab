@@ -3,7 +3,6 @@
     <section class="py-8 px-4">
         <div class="container mx-auto">
             <div class="flex flex-col lg:flex-row gap-8">
-                <div class="lg:w-7/12">
                     <div class="lg:col-span-2 w-full">
                         <div class="bg-white rounded-xl shadow-lg p-6">
                             <h3 class="text-xl font-semibold text-gray-800 mb-6">Previous Purchased Data </h3>
@@ -64,7 +63,7 @@
                                             <td class="px-4 py-4 whitespace-nowrap">@if($data->user?->first_name == 0)
                                                     NaN user
                                                 @else
-                                                    {{$data->user?->first_name}}
+                                                    {{$data->user?->first_name}} {{$data->user->last_name}}
                                                 @endif </td>
                                             <td class="px-4 py-4 whitespace-nowrap">{{$data->number}}</td>
                                             <td class="px-4 py-4 whitespace-nowrap">Unlimited for 1 month</td>
@@ -76,7 +75,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
         </div>
     </section>
 </div>
