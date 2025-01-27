@@ -10,6 +10,7 @@ Route::middleware('auth')->group(function () {
         Route::get('buy-data', \App\Livewire\Admin\Data::class)->name('admin.data');
         Route::get('top-up', \App\Livewire\Admin\TopUps::class)->name('admin.top-up');
         Route::get('user-dashboard', UserDashboard::class)->name('admin.user-dashboard');
+        Route::get('purchased_data', \App\Livewire\Admin\PurcahseData::class)->name('admin.purchased-data');
     });
 
 

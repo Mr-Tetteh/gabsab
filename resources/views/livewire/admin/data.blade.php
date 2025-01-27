@@ -1,6 +1,5 @@
 <div
     class="p-4 sm:ml-64  min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 motion-preset-expand motion-duration-2000">
-
     <section class="py-8 px-4">
         <div class="container mx-auto">
             <div class="flex flex-col lg:flex-row gap-8">

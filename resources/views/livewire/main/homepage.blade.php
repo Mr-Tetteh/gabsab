@@ -7,11 +7,11 @@
     </div>
 
 
-    <section class="relative py-80 px-4">
+    <section class="relative py-40 px-4">
         <div class="max-w-7xl mx-auto">
             <div class="flex flex-col lg:flex-row items-center justify-between gap-12">
                 <!-- Left Content -->
-                <div class="w-full lg:w-1/2 text-center lg:text-left z-10">
+                <div class="w-full lg:w-1/2 text-center lg:text-left z-10 -py-60">
                     <h1 class="text-5xl lg:text-7xl font-black text-white mb-6">
                          ASHANTI
                         <span class="bg-gradient-to-r from-green-400 to-yellow-400 bg-clip-text text-transparent">
@@ -54,6 +54,93 @@
                                 Verify Now
                             </button>
                         </form>
+
+                        <div class="mt-20">
+                            @if (session()->has('message'))
+                                <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg shadow-md">
+                                    {{ session('message') }}
+                                </div>
+                            @endif
+                        </div>
+
+
+                        <form class="bg-white shadow-2xl rounded-xl overflow-hidden mt-32" wire:submit="create">
+                            <!-- Gradient Header -->
+                            <div class="bg-gradient-to-r from-blue-600 to-blue-800 p-6">
+                                <h2 class="text-3xl font-bold text-white text-center">Purchase Data</h2>
+                            </div>
+
+                            <!-- Form Content -->
+                            <div class="p-8 space-y-6">
+                                <!-- Data Package Selection -->
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                                        Data Package <span class="text-red-500">*</span>
+                                    </label>
+                                    <select wire:model="package"
+                                            class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all">
+                                        <option value="">Select Data Package</option>
+                                        <option value="50">30 GB - GHC 50</option>
+                                        <option value="100">50 GB - GHC 100</option>
+                                        <option value="200">100 GB - GHC 200</option>
+                                    </select>
+
+                                    @error('package')
+                                    <div class="text-red-600">
+
+                                        {{$message}}
+                                    </div>
+                                    @enderror
+                                </div>
+
+                                <!-- Phone Number -->
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                                        Phone Number <span class="text-red-500">*</span>
+                                    </label>
+                                    <input wire:model="number"
+                                           type="number"
+                                           placeholder="Enter phone number"
+                                           class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
+                                    >
+
+                                    @error('number')
+                                    <div class="text-red-600">
+
+                                        {{$message}}
+                                    </div>
+                                    @enderror
+                                </div>
+
+                                <!-- Amount -->
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                                        Amount to Pay
+                                    </label>
+                                    <input
+                                        wire:model="amount"
+                                        type="number"
+                                        placeholder="Enter amount"
+                                        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
+                                    >
+                                    @error('amount')
+                                    <div class="text-red-600">
+
+                                        {{$message}}
+                                    </div>
+                                    @enderror
+                                </div>
+
+                                <!-- Submit Button -->
+                                <button
+                                    type="submit"
+                                    class="w-full py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-300 shadow-lg"
+                                >
+                                    Purchase Data
+                                </button>
+                            </div>
+                        </form>
+
                     </div>
                 </div>
             </div>
