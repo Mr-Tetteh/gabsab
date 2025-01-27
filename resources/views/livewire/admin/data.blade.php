@@ -40,7 +40,6 @@
                                 @enderror
                             </div>
 
-
                             <!-- Phone Number -->
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-2">
@@ -142,7 +141,7 @@
                                         </td>
                                         <td class="px-4 py-4 whitespace-nowrap">GHC  {{$data->amount}}</td>
                                         <td class="px-4 py-4 whitespace-nowrap">{{$data->reference}}</td>
-                                        <td class="px-4 py-4 whitespace-nowrap">30 Days</td>
+                                        <td class="px-4 py-4 whitespace-nowrap">Unlimited for 1 month</td>
                                     </tr>
                                     @endforeach
                                     </tbody>
