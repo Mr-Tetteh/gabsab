@@ -36,4 +36,9 @@ class Data extends Model
 
         return $uniqueRefNumber;
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
