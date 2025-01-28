@@ -10,7 +10,7 @@
         "laravel/framework": "^11.31",
         "laravel/tinker": "^2.9",
         "livewire/livewire": "^3.5",
-        "twilio/sdk": "^8.3"
+        "ext-curl": "*"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
@@ -28,7 +28,12 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
-        }
+        },
+
+        "files": [
+            "app/Helpers/Messaging.php",
+            "app/Helpers/Network.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {

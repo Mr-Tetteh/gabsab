@@ -12,6 +12,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+
+Route::get('/sms', function () {
+    return sendWithSMSONLINEGH('233559724772', 'hello World', sender: 'GABSAB');
+
+});
+
 require __DIR__.'/auth.php';
 require __DIR__.'/users.php';
 require __DIR__.'/admin.php';

@@ -7,7 +7,6 @@ use Exception;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
-use Twilio\Rest\Client;
 
 class Data extends Component
 {
@@ -49,6 +48,34 @@ class Data extends Component
         $this->resetForm();
         $this->sendSms();
     }
+
+    public function sendWithSMSONLINEGH($receiver, string $massage, string $sender = "Ashanti Hotspot")
+    {
+        try {
+            $url = env('SMS_GH_ONLINE_BASE_URL') . '/v5/sms/send';
+            $headers = [
+                'Content-Type:application/json',
+                'Authorization:key ' . env('SMS_GH_ONLINE_KEY'),
+            ];
+
+            $payload = [
+                "text" => $massage,
+                "type" => 0,
+                "sender" => $sender,
+                "destinations" => [$receiver]
+            ];
+
+            if (env('APP_DEBUG')) {
+                return curlPostNoSSL($url, $payload, $headers);
+            }
+
+            return Http::withHeaders($headers)->post($url, $payload)->json();
+
+        } catch (Throwable $throwable) {
+            return $throwable->getMessage();
+        }
+    }
+
 
     public function sendSms()
     {
