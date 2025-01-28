@@ -3,9 +3,12 @@
 namespace App\Livewire\Main;
 
 use App\Models\Data;
+use Carbon\Carbon;
+use Exception;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
+use Twilio\Rest\Client;
 
 class Homepage extends Component
 {
@@ -47,6 +50,31 @@ class Homepage extends Component
         ]);
         session()->flash('message', 'Data Purchased successfully. You will receive an SMS soon with your Voucher Pin');
         $this->resetForm();
+        $this->sendSms();
+
+    }
+
+    public function sendSms()
+    {
+        $number = \App\Models\Data::whereDate('created_at', Carbon::today())->pluck('number')->last();
+        $receiverNumber = '+233' . $number;
+        $message = 'Voucher Pin is UIJKSDFH84ERFDW. Happy Browsing. 😊🥳🎉 ';
+
+        $sid = env('TWILIO_SID');
+        $token = env('TWILIO_TOKEN');
+        $fromNumber = env('TWILIO_FROM');
+
+        try {
+            $client = new Client($sid, $token);
+            $client->messages->create($receiverNumber, [
+                'from' => $fromNumber,
+                'body' => $message
+            ]);
+
+            return 'SMS Sent Successfully.';
+        } catch (Exception $e) {
+            return 'Error: ' . $e->getMessage();
+        }
     }
 
     public function render()

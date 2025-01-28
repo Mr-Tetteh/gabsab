@@ -2,14 +2,16 @@
 
 namespace App\Livewire\Admin;
 
+use Carbon\Carbon;
+use Exception;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
+use Twilio\Rest\Client;
 
 class Data extends Component
 {
     #[Layout('layout.admin.partials.website-base-admin')]
-
     public $refrence;
     public $package;
     public $number;
@@ -31,8 +33,8 @@ class Data extends Component
         $this->user_id = null;
 
 
-
     }
+
     public function create()
     {
         $this->validate();
@@ -45,7 +47,35 @@ class Data extends Component
         ]);
         session()->flash('message', 'Data Purchased successfully. Please wait while we process');
         $this->resetForm();
+        $this->sendSms();
     }
+
+    public function sendSms()
+    {
+        $number = \App\Models\Data::whereDate('created_at', Carbon::today())->pluck('number')->first();
+        logger($number);
+        /*
+
+        $receiverNumber = '+233 559724772';
+        $message = 'hi testing';
+
+        $sid = env('TWILIO_SID');
+        $token = env('TWILIO_TOKEN');
+        $fromNumber = env('TWILIO_FROM');
+
+        try {
+            $client = new Client($sid, $token);
+            $client->messages->create($receiverNumber, [
+                'from' => $fromNumber,
+                'body' => $message
+            ]);
+
+            return 'SMS Sent Successfully.';
+        } catch (Exception $e) {
+            return 'Error: ' . $e->getMessage();
+        }*/
+    }
+
     public function render()
     {
         $user = Auth::user()->id;
