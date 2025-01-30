@@ -46,6 +46,7 @@
                             <span class="absolute inset-x-0 -bottom-px h-px bg-gradient-to-r from-blue-500/0 via-blue-500/70 to-blue-500/0 opacity-0 transition-opacity duration-200 group-hover:opacity-100"></span>
                         </a>
                     </li>
+                    @guest()
                     <li class="relative group">
                         <a href="{{route('login')}}" class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 rounded-lg group-hover:text-blue-600 group-hover:bg-blue-50 transition-all duration-200">
                             login
@@ -58,6 +59,21 @@
                             <span class="absolute inset-x-0 -bottom-px h-px bg-gradient-to-r from-blue-500/0 via-blue-500/70 to-blue-500/0 opacity-0 transition-opacity duration-200 group-hover:opacity-100"></span>
                         </a>
                     </li>
+                    @endguest
+
+
+                    @auth
+                    <li class="relative group">
+
+                    <form method="POST" action="{{ route('logout') }}" class="px-4 py-2 text-red-600 rounded-lg transition-colors duration-200 flex items-center gap-2 hover:bg-red-50">
+                        @csrf
+                        <x-responsive-nav-link :href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">
+                            <i class="fas fa-sign-out-alt"></i>
+                            {{ __('Log Out') }}
+                        </x-responsive-nav-link>
+                    </form>
+                    </li>
+                    @endauth
                 </ul>
             </nav>
 

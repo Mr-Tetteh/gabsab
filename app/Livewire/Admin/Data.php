@@ -12,24 +12,39 @@ class Data extends Component
 {
     #[Layout('layout.admin.partials.website-base-admin')]
     public $refrence;
-    public $package;
+    public $packages = [];
     public $number;
     public $amount;
+    public $quantity = '';
     public $user_id;
 
 
     protected $rules = [
-        'package' => 'required',
+        'packages' => 'required|array|min:1',
         'number' => 'required|numeric|digits:10',
+        'quantity' => 'required|string',
         'amount' => 'required|numeric',
     ];
 
+
+    protected $messages = [
+        'packages.required' => 'Please select at least one data package.',
+        'packages.array' => 'Invalid package selection.',
+        'number.required' => 'Phone number is required.',
+        'number.digits' => 'Phone number must be 10 digits.',
+        'amount.required' => 'Amount is required.',
+        'amount.numeric' => 'Amount must be a number.',
+        'quantity.required' => 'Quantity is required.',
+    ];
+
+
     public function resetForm()
     {
-        $this->package = null;
+        $this->packages = [];
         $this->number = null;
         $this->amount = null;
         $this->user_id = null;
+        $this->quantity = [];
 
 
     }
@@ -38,69 +53,31 @@ class Data extends Component
     {
         $this->validate();
 
+        $quantityArray = array_map('trim', explode(',', $this->quantity));
+
+        if (count($quantityArray) !== count($this->packages)) {
+            $this->addError('quantity', 'Number of quantities must match number of selected packages');
+            return;
+        }
+
+        foreach ($quantityArray as $qty) {
+            if (!is_numeric($qty) || $qty <= 0) {
+                $this->addError('quantity', 'All quantities must be valid positive numbers.
+                 Please refresh the page');
+                return;
+            }
+        }
+
         \App\Models\Data::create([
-            'package' => $this->package,
-            'number' => $this->number,
+            'package' => json_encode($this->packages),
+            'number' => '233'.substr($this->number, -9),
             'amount' => $this->amount,
+            'quantity' => json_encode($quantityArray),
             'user_id' => Auth::user()->id,
         ]);
         session()->flash('message', 'Data Purchased successfully. Please wait while we process');
+        sendWithSMSONLINEGH('233'.substr($this->number, -9),'Hello '. Auth::user()->first_name .' your Data your Purchased successfully we will send you the Voucher pins within the next 30 min');
         $this->resetForm();
-        $this->sendSms();
-    }
-
-    public function sendWithSMSONLINEGH($receiver, string $massage, string $sender = "Ashanti Hotspot")
-    {
-        try {
-            $url = env('SMS_GH_ONLINE_BASE_URL') . '/v5/sms/send';
-            $headers = [
-                'Content-Type:application/json',
-                'Authorization:key ' . env('SMS_GH_ONLINE_KEY'),
-            ];
-
-            $payload = [
-                "text" => $massage,
-                "type" => 0,
-                "sender" => $sender,
-                "destinations" => [$receiver]
-            ];
-
-            if (env('APP_DEBUG')) {
-                return curlPostNoSSL($url, $payload, $headers);
-            }
-
-            return Http::withHeaders($headers)->post($url, $payload)->json();
-
-        } catch (Throwable $throwable) {
-            return $throwable->getMessage();
-        }
-    }
-
-
-    public function sendSms()
-    {
-        $number = \App\Models\Data::whereDate('created_at', Carbon::today())->pluck('number')->first();
-        logger($number);
-        /*
-
-        $receiverNumber = '+233 559724772';
-        $message = 'hi testing';
-
-        $sid = env('TWILIO_SID');
-        $token = env('TWILIO_TOKEN');
-        $fromNumber = env('TWILIO_FROM');
-
-        try {
-            $client = new Client($sid, $token);
-            $client->messages->create($receiverNumber, [
-                'from' => $fromNumber,
-                'body' => $message
-            ]);
-
-            return 'SMS Sent Successfully.';
-        } catch (Exception $e) {
-            return 'Error: ' . $e->getMessage();
-        }*/
     }
 
     public function render()

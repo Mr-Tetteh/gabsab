@@ -13,7 +13,7 @@
                     <form class="bg-white shadow-2xl rounded-xl overflow-hidden" wire:submit="create">
                         <!-- Gradient Header -->
                         <div class="bg-gradient-to-r from-blue-600 to-blue-800 p-6">
-                            <h2 class="text-3xl font-bold text-white text-center">Purchase Data</h2>
+                            <h2 class="text-3xl font-bold text-white text-center">Bulk Data Purchase</h2>
                         </div>
 
                         <!-- Form Content -->
@@ -23,17 +23,46 @@
                                 <label class="block text-sm font-medium text-gray-700 mb-2">
                                     Data Package <span class="text-red-500">*</span>
                                 </label>
-                                <select wire:model="package"
-                                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all">
-                                    <option value="">Select Data Package</option>
-                                    <option value="50">30 GB - GHC 50</option>
-                                    <option value="100">50 GB - GHC 100</option>
-                                    <option value="200">100 GB - GHC 200</option>
-                                </select>
 
-                                @error('package')
+                                <div class="space-y-2">
+                                    <label class="flex items-center space-x-2">
+                                        <input type="checkbox" wire:model="packages" value="50"
+                                               class="rounded border-gray-300 focus:ring-2 focus:ring-blue-500">
+                                        <span>30 GB - GHC 50</span>
+                                    </label>
+
+                                    <label class="flex items-center space-x-2">
+                                        <input type="checkbox" wire:model="packages" value="100"
+                                               class="rounded border-gray-300 focus:ring-2 focus:ring-blue-500">
+                                        <span>50 GB - GHC 100</span>
+                                    </label>
+
+                                    <label class="flex items-center space-x-2">
+                                        <input type="checkbox" wire:model="packages" value="200"
+                                               class="rounded border-gray-300 focus:ring-2 focus:ring-blue-500">
+                                        <span>100 GB - GHC 200</span>
+                                    </label>
+                                </div>
+
+                                @error('packages')
                                 <div class="text-red-600">
+                                    {{$message}}
+                                </div>
+                                @enderror
+                            </div>
 
+
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">
+                                    Quantity <span class="text-red-500">*</span>
+                                </label>
+                                <input wire:model.live="quantity"
+                                       type="text"
+                                       placeholder="Enter quantities in order of the selection andseparated by commas (e.g., 2,3,1)"
+                                       class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
+                                >
+                                @error('quantity')
+                                <div class="text-red-600">
                                     {{$message}}
                                 </div>
                                 @enderror
@@ -45,10 +74,11 @@
                                     Phone Number <span class="text-red-500">*</span>
                                 </label>
                                 <input wire:model="number"
-                                    type="number"
-                                    placeholder="Enter phone number"
-                                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
+                                       type="number"
+                                       placeholder="Enter phone number"
+                                       class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
                                 >
+                                <span class="text-gray-400">A voucher PIN will be sent to the provided number, which will also be used for payment.</span>
 
                                 @error('number')
                                 <div class="text-red-600">
@@ -103,46 +133,75 @@
                                             Data Volume
                                         </th>
                                         <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Quantity
+                                        </th>
+                                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Price
                                         </th>
                                         <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Reference
                                         </th>
                                         <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Validity
+                                            Date
                                         </th>
                                     </tr>
                                     </thead>
                                     <tbody class="divide-y divide-gray-200">
-                                    @foreach($datas as $data)
-                                    <tr class="hover:bg-gray-50">
-                                        <td class="px-4 py-4 whitespace-nowrap">
-                                            @if($data->package == '200')
-                                                Enterpise
+                                    @if($datas->isEmpty())
+                                        <tr>
+                                            <td class="px-4 py-4 text-center" colspan="6">No record found</td>
+                                        </tr>
+                                    @else
+                                        @foreach($datas as $data)
+                                            @php
+                                                $packages = json_decode($data->package);
+                                                $quantities = json_decode($data->quantity);
+                                            @endphp
 
-                                            @elseif($data->package == '100')
-                                                Start up
-
-                                            @elseif($data->package == '50')
-                                                Basic
-                                            @endif
-                                        </td>
-                                        <td class="px-4 py-4 whitespace-nowrap">
-                                            @if($data->package == '200')
-                                                100 GB
-
-                                            @elseif($data->package == '100')
-                                                50 GB
-
-                                            @elseif($data->package == '50')
-                                                30 GB
-                                            @endif
-                                        </td>
-                                        <td class="px-4 py-4 whitespace-nowrap">GHC  {{$data->amount}}</td>
-                                        <td class="px-4 py-4 whitespace-nowrap">{{$data->reference}}</td>
-                                        <td class="px-4 py-4 whitespace-nowrap">Unlimited for 1 month</td>
-                                    </tr>
-                                    @endforeach
+                                            @foreach($packages as $index => $package)
+                                                <tr class="hover:bg-gray-50">
+                                                    <td class="px-4 py-4 whitespace-nowrap">
+                                                        @switch($package)
+                                                            @case('200')
+                                                                Enterprise
+                                                                @break
+                                                            @case('100')
+                                                                Start up
+                                                                @break
+                                                            @case('50')
+                                                                Basic
+                                                                @break
+                                                        @endswitch
+                                                    </td>
+                                                    <td class="px-4 py-4 whitespace-nowrap">
+                                                        @switch($package)
+                                                            @case('200')
+                                                                100 GB
+                                                                @break
+                                                            @case('100')
+                                                                50 GB
+                                                                @break
+                                                            @case('50')
+                                                                30 GB
+                                                                @break
+                                                        @endswitch
+                                                    </td>
+                                                    <td class="px-4 py-4 whitespace-nowrap">
+                                                        {{ $quantities[$index] ?? 1 }}
+                                                    </td>
+                                                    <td class="px-4 py-4 whitespace-nowrap">
+                                                        GHC {{ $package * ($quantities[$index] ?? 1) }}
+                                                    </td>
+                                                    <td class="px-4 py-4 whitespace-nowrap">
+                                                        {{$data->reference}}
+                                                    </td>
+                                                    <td class="px-4 py-4 whitespace-nowrap">
+                                                        {{$data->created_at->format('jS F, Y') }}
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        @endforeach
+                                    @endif
                                     </tbody>
                                 </table>
                             </div>
