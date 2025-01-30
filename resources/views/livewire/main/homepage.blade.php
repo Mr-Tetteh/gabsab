@@ -113,23 +113,7 @@
                                 </div>
 
                                 <!-- Amount -->
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">
-                                        Amount to Pay
-                                    </label>
-                                    <input
-                                        wire:model="amount"
-                                        type="number"
-                                        placeholder="Enter amount"
-                                        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
-                                    >
-                                    @error('amount')
-                                    <div class="text-red-600">
 
-                                        {{$message}}
-                                    </div>
-                                    @enderror
-                                </div>
 
                                 <!-- Submit Button -->
                                 <button

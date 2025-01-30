@@ -19,7 +19,6 @@ class Homepage extends Component
     public $refrence;
     public $package;
     public $number;
-    public $amount;
     public $user_id;
     public $message;
 
@@ -27,7 +26,6 @@ class Homepage extends Component
     protected $rules = [
         'package' => 'required',
         'number' => 'required|numeric|digits:10',
-        'amount' => 'required|numeric',
     ];
 
     public function resetForm()
@@ -48,7 +46,7 @@ class Homepage extends Component
         Data::create([
             'package' => $this->package,
             'number' => '233'.substr($this->number, -9),
-            'amount' => $this->amount,
+            'amount' => $this->package,
             'user_id' => '0',
         ]);
         \sendWithSMSONLINEGH('233'.substr($this->number, -9),
