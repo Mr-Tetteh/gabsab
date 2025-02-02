@@ -134,7 +134,6 @@
                         </div>
                     </div>
 
-                    <!-- Address -->
                     <div>
                         <x-input-label for="address" :value="__('Address')" class="font-medium"/>
                         <div class="mt-1">
@@ -151,6 +150,25 @@
                         </div>
                         <x-input-error :messages="$errors->get('address')" class="mt-2"/>
                     </div>
+                    <!-- Address -->
+{{--
+                    <div>
+                        <x-input-label for="address" :value="__('Role')" class="font-medium"/>
+                        <div class="mt-1">
+                            <select
+                                id="gender"
+                                name="gender"
+                                class="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-200 dark:bg-gray-700 dark:text-gray-100"
+                                required
+                            >
+                                <option value="">Select Gender</option>
+                                <option value="male" {{ old('gender') == 'male' ? 'selected' : '' }}>Male</option>
+                                <option value="female" {{ old('gender') == 'female' ? 'selected' : '' }}>Female</option>
+                            </select>
+                        </div>
+                        <x-input-error :messages="$errors->get('address')" class="mt-2"/>
+                    </div>
+--}}
 
                     <!-- Password -->
                     <div>
