@@ -23,13 +23,22 @@
                                         Email
                                     </th>
                                     <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Phone
+                                        Contact
                                     </th>
                                     <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Message
+                                        Address
                                     </th>
                                     <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        status
+                                        Role
+                                    </th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Gender
+                                    </th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Date of birth
+                                    </th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Date
                                     </th>
                                     <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Action
@@ -41,34 +50,24 @@
                                 @foreach($datas as $data)
                                     <tr class="hover:bg-gray-50">
                                         <td class="px-4 py-4 whitespace-nowrap">
-                                            {{$data->name}}
+                                            {{$data->first_name}} {{$data->last_name}}
                                         </td>
                                         <td class="px-4 py-4 whitespace-nowrap">
                                             {{$data->email}}
                                         </td>
-                                        <td class="px-4 py-4 whitespace-nowrap">{{$data->phone}}</td>
-                                        <td class="px-4 py-4 whitespace-nowrap">{{$data->message}}</td>
+                                        <td class="px-4 py-4 whitespace-nowrap">{{$data->contact}}</td>
+                                        <td class="px-4 py-4 whitespace-nowrap">{{$data->address}}</td>
                                         <td class="px-4 py-4 whitespace-nowrap">
-                                            @if($data->status == false)
-                                                <span
-                                                    class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800">
-            <svg class="w-4 h-4 mr-1.5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                <path
-                    d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zm0 16a3 3 0 01-3-3h6a3 3 0 01-3 3z"/>
-            </svg>
-            Pending
-        </span>
-                                            @else
-                                                <span
-                                                    class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
-            <svg class="w-4 h-4 mr-1.5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clip-rule="evenodd"/>
-            </svg>
-            Solved
-        </span>
-                                            @endif
+                                       {{$data->role}}
+                                        </td>
+                                        <td class="px-4 py-4 whitespace-nowrap">
+                                            {{$data->gender}}
+                                        </td>
+                                        <td class="px-4 py-4 whitespace-nowrap">
+                                            {{$data->date_of_birth}}
+                                        </td>
+                                        <td class="px-4 py-4 whitespace-nowrap">
+                                            {{$data->created_at->format('jS D Y')}}
                                         </td>
                                         <td class="px-4 py-4 whitespace-nowrap">
                                             <button
