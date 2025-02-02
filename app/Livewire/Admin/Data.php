@@ -76,7 +76,7 @@ class Data extends Component
             'user_id' => Auth::user()->id,
         ]);
         session()->flash('message', 'Data Purchased successfully. Please wait while we process');
-        sendWithSMSONLINEGH('233'.substr($this->number, -9),'Hello '. Auth::user()->first_name .' your Data your Purchased successfully we will send you the Voucher pins within the next 30 min');
+//        sendWithSMSONLINEGH('233'.substr($this->number, -9),'Hello '. Auth::user()->first_name .' your Data your Purchased successfully we will send you the Voucher pins within the next 30 min');
         $this->resetForm();
     }
 

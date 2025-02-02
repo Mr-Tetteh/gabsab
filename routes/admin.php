@@ -11,6 +11,7 @@ Route::middleware('auth')->group(function () {
         Route::get('top-up', \App\Livewire\Admin\TopUps::class)->name('admin.top-up');
         Route::get('user-dashboard', UserDashboard::class)->name('admin.user-dashboard');
         Route::get('purchased_data', \App\Livewire\Admin\PurcahseData::class)->name('admin.purchased-data');
+        Route::get('faqs', \App\Livewire\Admin\Faqs::class)->name('admin.faqs');
     });
 
 
