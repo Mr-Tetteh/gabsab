@@ -2,6 +2,9 @@
 
 namespace App\Livewire\Admin;
 
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
@@ -13,6 +16,19 @@ class Dashboard extends Component
     public function render()
     {
         $user = Auth::user();
-        return view('livewire.admin.dashboard', compact('user'));
+        $all_users = User::all()->count();
+        $admin_users = User::where('role', 'admin')->count();
+        $resellers_users = User::where('role', 'reseller')->count();
+        $today_users = User::whereDate('created_at', now()->toDateString())->count();
+        $all_data = \App\Models\Data::all()->count();
+        $today_data = \App\Models\Data::whereDate('created_at', now()->toDateString())->count();
+        $logged_in_users = \DB::table('sessions')
+            ->where('user_id', '!=', null)
+            ->distinct('user_id')
+            ->count('user_id');
+
+
+        return view('livewire.admin.dashboard', compact('user', 'all_users',
+            'admin_users', 'today_users', 'all_data', 'today_data', 'resellers_users'));
     }
 }

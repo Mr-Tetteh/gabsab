@@ -15,7 +15,7 @@
                                     <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Reference</th>
                                     <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
                                     <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Contact</th>
-                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Validity</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
                                 </tr>
                                 </thead>
                                 <tbody class="divide-y divide-gray-200">
@@ -72,7 +72,7 @@
                                                     @endif
                                                 </td>
                                                 <td class="px-4 py-4 whitespace-nowrap">{{ $data->number ?? 'N/A' }}</td>
-                                                <td class="px-4 py-4 whitespace-nowrap">Unlimited for 1 month</td>
+                                                <td class="px-4 py-4 whitespace-nowrap">{{$data->created_at->format('jS D Y')}}</td>
                                             </tr>
                                         @endforeach
                                     @endforeach
