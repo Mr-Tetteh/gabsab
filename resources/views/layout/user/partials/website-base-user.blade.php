@@ -18,26 +18,19 @@
     <!-- Add one of these options: -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .sidebarClass {
+            @apply fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full md:translate-x-0;
+        }
+    </style>
 
-    <!-- Option 1: If using Vite -->
-    @vite(['resources/css/app.css', 'resources/css/styles.css', 'resources/js/script.js'])
-
-
+    @vite(['resources/js/app.js', 'resources/js/script.js'])
 
     @livewireStyles
 
     @stack('styles')
-
-    <style>
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
-        }
-        .float-animation {
-            animation: float 6s ease-in-out infinite;
-        }
-    </style>
 </head>
 
 <body class="index-page">
@@ -49,14 +42,10 @@
     {{$slot}}
 
 </main>
-
 @include('layout.user.partials.website-footer')
-
 
 <!-- Preloader -->
 <div id="preloader"></div>
-
-
 
 <!-- Main JS File -->
 <script src="{{asset('website/assets/js/main.js')}}"></script>

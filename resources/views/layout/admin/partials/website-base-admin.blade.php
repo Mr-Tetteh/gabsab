@@ -20,13 +20,15 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
     <style>
         .sidebarClass {
             @apply fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full md:translate-x-0;
         }
     </style>
-    @vite(['resources/css/app.css', 'resources/css/styles.css', 'resources/js/script.js'])
 
+    @vite(['resources/js/app.js', 'resources/js/script.js'])
 
     @livewireStyles
 

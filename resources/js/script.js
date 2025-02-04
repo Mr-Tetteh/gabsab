@@ -22,4 +22,3 @@ hand_bugger.addEventListener('click', function () {
     nav_menu.classList.toggle('hidden')
     nav_menu.style.scrollBehavior = "smooth"
 })
-
