@@ -37,8 +37,8 @@
                     <i class="fas fa-users text-xl text-blue-500"></i>
                 </div>
                 <div class="ml-4">
-                    <h3 class="text-sm font-medium text-gray-500">Total Users</h3>
-                    <p class="text-2xl font-bold text-blue-500">32</p>
+                    <h3 class="text-sm font-medium text-gray-500">Total Number of All Users</h3>
+                    <p class="text-2xl font-bold text-blue-500">{{$all_users}}</p>
                 </div>
             </div>
         </div>
@@ -51,10 +51,36 @@
                 </div>
                 <div class="ml-4">
                     <h3 class="text-sm font-medium text-gray-500">Total Admin Users</h3>
-                    <p class="text-2xl font-bold text-purple-500">42</p>
+                    <p class="text-2xl font-bold text-purple-500">{{$admin_users}}</p>
                 </div>
             </div>
         </div>
+
+        <div class="bg-white rounded-xl shadow-sm border-l-4 border-teal-500 p-6 hover:shadow-md transition-all duration-300 transform hover:-translate-y-1">
+            <div class="flex items-center">
+                <div class="w-12 h-12 rounded-full bg-teal-100 flex items-center justify-center">
+                    <i class="fas fa-users-cog text-xl text-teal-500"></i>
+                </div>
+                <div class="ml-4">
+                    <h3 class="text-sm font-medium text-gray-500">Total Number of Resellers</h3>
+                    <p class="text-2xl font-bold text-teal-500">{{$resellers_users}}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Registered Users Today Card -->
+        <div class="bg-white rounded-xl shadow-sm border-l-4 border-fuchsia-500 p-6 hover:shadow-md transition-all duration-300 transform hover:-translate-y-1">
+            <div class="flex items-center">
+                <div class="w-12 h-12 rounded-full bg-fuchsia-100 flex items-center justify-center">
+                    <i class="fas fa-user-plus text-xl text-fuchsia-500"></i>
+                </div>
+                <div class="ml-4">
+                    <h3 class="text-sm font-medium text-gray-500">Registered Users Today</h3>
+                    <p class="text-2xl font-bold text-fuchsia-500">{{$today_users}}</p>
+                </div>
+            </div>
+        </div>
+
 
         <!-- Data Buyers Card -->
         <div class="bg-white rounded-xl shadow-sm border-l-4 border-green-500 p-6 hover:shadow-md transition-all duration-300 transform hover:-translate-y-1">
@@ -63,8 +89,8 @@
                     <i class="fas fa-shopping-cart text-xl text-green-500"></i>
                 </div>
                 <div class="ml-4">
-                    <h3 class="text-sm font-medium text-gray-500">Total Data Buyers</h3>
-                    <p class="text-2xl font-bold text-green-500">567</p>
+                    <h3 class="text-sm font-medium text-gray-500">Total Data Purchase</h3>
+                    <p class="text-2xl font-bold text-green-500">{{$all_data}}</p>
                 </div>
             </div>
         </div>
@@ -82,18 +108,6 @@
             </div>
         </div>
 
-        <!-- Registered Users Today Card -->
-        <div class="bg-white rounded-xl shadow-sm border-l-4 border-fuchsia-500 p-6 hover:shadow-md transition-all duration-300 transform hover:-translate-y-1">
-            <div class="flex items-center">
-                <div class="w-12 h-12 rounded-full bg-fuchsia-100 flex items-center justify-center">
-                    <i class="fas fa-user-plus text-xl text-fuchsia-500"></i>
-                </div>
-                <div class="ml-4">
-                    <h3 class="text-sm font-medium text-gray-500">Registered Users Today</h3>
-                    <p class="text-2xl font-bold text-fuchsia-500">45,00</p>
-                </div>
-            </div>
-        </div>
 
         <!-- Data Buyers Today Card -->
         <div class="bg-white rounded-xl shadow-sm border-l-4 border-red-500 p-6 hover:shadow-md transition-all duration-300 transform hover:-translate-y-1">
@@ -102,8 +116,8 @@
                     <i class="fas fa-chart-line text-xl text-red-500"></i>
                 </div>
                 <div class="ml-4">
-                    <h3 class="text-sm font-medium text-gray-500">Data Buyers Today</h3>
-                    <p class="text-2xl font-bold text-red-500">424</p>
+                    <h3 class="text-sm font-medium text-gray-500">Total Data Purchase Today</h3>
+                    <p class="text-2xl font-bold text-red-500">{{$today_data}}</p>
                 </div>
             </div>
         </div>
@@ -121,17 +135,6 @@
             </div>
         </div>
 
-        <!-- Additional Card (Example: Active Sessions) -->
-        <div class="bg-white rounded-xl shadow-sm border-l-4 border-teal-500 p-6 hover:shadow-md transition-all duration-300 transform hover:-translate-y-1">
-            <div class="flex items-center">
-                <div class="w-12 h-12 rounded-full bg-teal-100 flex items-center justify-center">
-                    <i class="fas fa-users-cog text-xl text-teal-500"></i>
-                </div>
-                <div class="ml-4">
-                    <h3 class="text-sm font-medium text-gray-500">Active Sessions</h3>
-                    <p class="text-2xl font-bold text-teal-500">12</p>
-                </div>
-            </div>
-        </div>
+
     </div>
 </div>

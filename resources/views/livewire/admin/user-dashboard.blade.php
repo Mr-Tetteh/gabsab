@@ -44,8 +44,8 @@
                     <i class="fas fa-shopping-cart text-xl text-green-500"></i>
                 </div>
                 <div class="ml-4">
-                    <h3 class="text-sm font-medium text-gray-500">Total Data Bought</h3>
-                    <p class="text-2xl font-bold text-green-500">50</p>
+                    <h3 class="text-sm font-medium text-gray-500">Total Data Purchased</h3>
+                    <p class="text-2xl font-bold text-green-500">{{$logged_in_user_data}}</p>
                 </div>
             </div>
         </div>
@@ -58,8 +58,8 @@
                     <i class="fas fa-chart-line text-xl text-blue-500"></i>
                 </div>
                 <div class="ml-4">
-                    <h3 class="text-sm font-medium text-gray-500">Total Transactions</h3>
-                    <p class="text-2xl font-bold text-blue-500">5</p>
+                    <h3 class="text-sm font-medium text-gray-500">Total Purchase today</h3>
+                    <p class="text-2xl font-bold text-blue-500">{{$today_purchase}}</p>
                 </div>
             </div>
         </div>
