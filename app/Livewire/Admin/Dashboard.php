@@ -29,7 +29,12 @@ class Dashboard extends Component
             ->count('user_id');
 
 
+        $data_purchase = \App\Models\Data::selectRaw('DATE(created_at) as date, COUNT(*) as count')
+            ->groupBy('date')
+            ->pluck('count', 'date');
+
+
         return view('livewire.admin.dashboard', compact('user', 'all_users',
-            'admin_users', 'today_users', 'all_data', 'today_data', 'resellers_users', 'user_users'));
+            'admin_users', 'today_users', 'all_data', 'today_data', 'resellers_users', 'user_users','data_purchase'));
     }
 }
