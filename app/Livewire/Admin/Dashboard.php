@@ -28,7 +28,6 @@ class Dashboard extends Component
             ->distinct('user_id')
             ->count('user_id');
 
-
         $data_purchase = \App\Models\Data::selectRaw('DATE(created_at) as date, COUNT(*) as count')
             ->groupBy('date')
             ->pluck('count', 'date');
