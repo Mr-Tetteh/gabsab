@@ -83,7 +83,7 @@ class Data extends Component
     public function render()
     {
         $user = Auth::user()->id;
-        $datas = \App\Models\Data::where('user_id', $user)->get();
+        $datas = \App\Models\Data::where('user_id', $user)->latest()->paginate(10);
         return view('livewire.admin.data', compact('datas'));
     }
 }

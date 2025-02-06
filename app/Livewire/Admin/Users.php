@@ -67,7 +67,7 @@ class Users extends Component
 
     public function render()
     {
-        $datas = User::all();
+        $datas = User::latest()->paginate(10);
         return view('livewire.admin.users', compact('datas'));
     }
 }

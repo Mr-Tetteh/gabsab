@@ -28,7 +28,7 @@ class Faqs extends Component
 
     public function render()
     {
-        $datas = \App\Models\Faqs::all();
+        $datas = \App\Models\Faqs::latest()->paginate(10);
         return view('livewire.admin.faqs', compact('datas'));
     }
 }

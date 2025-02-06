@@ -18,7 +18,7 @@ class PurcahseData extends Component
 
     public function render()
     {
-        $datas = \App\Models\Data::all();
+        $datas = \App\Models\Data::latest()->paginate(10);
         return view('livewire.admin.purcahse-data', compact('datas'));
     }
 }
