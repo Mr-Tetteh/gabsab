@@ -12,6 +12,7 @@ Route::middleware('auth')->group(function () {
         Route::get('purchased_data', \App\Livewire\Admin\PurcahseData::class)->name('admin.purchased-data');
         Route::get('faqs', \App\Livewire\Admin\Faqs::class)->name('admin.faqs');
         Route::get('users', \App\Livewire\Admin\Users::class)->name('admin.users');
+        Route::get('bundle_plans', \App\Livewire\Admin\BundlePlans::class)->name('admin.bundle-plans');
     });
 
 

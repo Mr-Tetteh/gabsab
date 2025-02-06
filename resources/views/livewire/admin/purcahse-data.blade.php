@@ -78,6 +78,8 @@
                                     @endforeach
                                 @endif
                                 </tbody>
+                                {{ $datas->links() }}
+
                             </table>
                         </div>
                     </div>

@@ -232,6 +232,7 @@
                                     </tr>
                                 @endforeach
                                 </tbody>
+                                {{$datas->links()}}
                             </table>
                         </div>
                     </div>

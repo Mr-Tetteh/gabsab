@@ -49,7 +49,7 @@
                     @guest()
                     <li class="relative group">
                         <a href="{{route('login')}}" class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 rounded-lg group-hover:text-blue-600 group-hover:bg-blue-50 transition-all duration-200">
-                            login
+                            Login
                             <span class="absolute inset-x-0 -bottom-px h-px bg-gradient-to-r from-blue-500/0 via-blue-500/70 to-blue-500/0 opacity-0 transition-opacity duration-200 group-hover:opacity-100"></span>
                         </a>
                     </li>
