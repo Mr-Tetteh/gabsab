@@ -45,12 +45,12 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
                 @foreach($datas as $index => $data)
-                    <div class="w-full min-h-[500px] p-8 bg-{{ ['yellow-100', 'red-100', 'blue-100'][$index % 3] }} shadow-xl rounded-3xl flex flex-col items-center text-center">
+                    <div class="w-full min-h-[200px] p-2 bg-{{ ['yellow-100', 'red-100', 'blue-100'][$index % 3] }} shadow-xl rounded-3xl flex flex-col items-center text-center">
                         <div class="mb-7 pb-7 flex flex-col items-center border-b border-gray-300">
                             <img src="https://res.cloudinary.com/williamsondesign/abstract-1.jpg" class="rounded-3xl w-20 h-20" />
-                            <div class="mt-5">
+                            <div class="mt-5 space-x-4">
                                 <span class="block text-2xl font-semibold">{{ $data->name }}</span>
-                                <span><span class="font-medium text-gray-500 text-xl align-top">GHC&thinsp;</span><span class="text-3xl font-bold">{{ $data->price }}</span></span>
+                                <span><span class="font-medium  text-gray-500 text-xl align-top">GHC&thinsp;</span><span class="text-3xl font-bold">{{ $data->price }}</span></span>
                             </div>
 
                             <div class="mt-5">
