@@ -2,6 +2,7 @@
 
 namespace App\Livewire\User;
 
+use App\Models\BundlePlans;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 
@@ -12,6 +13,7 @@ class Homepage extends Component
 
     public function render()
     {
-        return view('livewire.user.homepage');
+        $datas = BundlePlans::all();
+        return view('livewire.user.homepage', compact('datas'));
     }
 }

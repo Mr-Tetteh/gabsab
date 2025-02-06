@@ -141,6 +141,7 @@ class BundlePlans extends Component
         ]);
         $this->restForm();
         session()->flash('message', 'Bundle plan successfully updated.');
+        $this->isEdit = false;
     }
 
     public function delete($id)
