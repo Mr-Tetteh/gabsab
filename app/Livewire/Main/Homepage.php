@@ -49,8 +49,8 @@ class Homepage extends Component
             'amount' => $this->package,
             'user_id' => '0',
         ]);
-//        \sendWithSMSONLINEGH('233'.substr($this->number, -9),
-//            'Dear Customer your Data your Purchased successfully Your Voucher pin is '.$Voucher.' Happy browsing.');
+        \sendWithSMSONLINEGH('233'.substr($this->number, -9),
+            'Dear Customer your Data your Purchased successfully Your Voucher pin is '.$Voucher.' Happy browsing.');
         session()->flash('message', 'Data Purchased successfully. You will receive an SMS soon with your Voucher Pin');
         $this->resetForm();
 

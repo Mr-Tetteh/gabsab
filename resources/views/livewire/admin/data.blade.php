@@ -68,6 +68,7 @@
                                 @enderror
                             </div>
 
+
                             <!-- Phone Number -->
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-2">
@@ -88,24 +89,16 @@
                                 @enderror
                             </div>
 
-                            <!-- Amount -->
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-2">
-                                    Amount to Pay
-                                </label>
-                                <input
-                                    wire:model="amount"
-                                    type="number"
-                                    placeholder="Enter amount"
-                                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
-                                >
-                                @error('amount')
-                                <div class="text-red-600">
-
-                                    {{$message}}
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-lg font-medium text-gray-700">Total Amount:</span>
+                                    <span class="text-2xl font-bold text-blue-600">GHC {{ number_format($calculatedTotal, 2) }}</span>
                                 </div>
-                                @enderror
                             </div>
+
+                            <!-- Amount -->
+                            <input type="hidden" wire:model="amount">
+
 
                             <!-- Submit Button -->
                             <button
@@ -143,6 +136,9 @@
                                         </th>
                                         <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Date
+                                        </th>
+                                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Time
                                         </th>
                                     </tr>
                                     </thead>
@@ -197,6 +193,9 @@
                                                     </td>
                                                     <td class="px-4 py-4 whitespace-nowrap">
                                                         {{$data->created_at->format('jS F, Y') }}
+                                                    </td>
+                                                    <td class="px-4 py-4 whitespace-nowrap">
+                                                        {{$data->created_at->format('h:i A') }}
                                                     </td>
                                                 </tr>
                                             @endforeach

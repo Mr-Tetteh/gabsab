@@ -16,6 +16,8 @@
                                     <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
                                     <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Contact</th>
                                     <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Time</th>
+
                                 </tr>
                                 </thead>
                                 <tbody class="divide-y divide-gray-200">
@@ -73,6 +75,7 @@
                                                 </td>
                                                 <td class="px-4 py-4 whitespace-nowrap">{{ $data->number ?? 'N/A' }}</td>
                                                 <td class="px-4 py-4 whitespace-nowrap">{{$data->created_at->format('jS D Y')}}</td>
+                                                <td class="px-4 py-4 whitespace-nowrap">{{$data->created_at->format('h:i A')}}</td>
                                             </tr>
                                         @endforeach
                                     @endforeach
