@@ -36,14 +36,14 @@
                                             <tr class="hover:bg-gray-50">
                                                 <td class="px-4 py-4 whitespace-nowrap">
                                                     @switch($package)
-                                                        @case(200)
-                                                            Enterprise
+                                                        @case(1)
+                                                            One Ghana for your pocket
                                                             @break
-                                                        @case(100)
-                                                            Start up
+                                                        @case(2)
+                                                            Ashanti Two
                                                             @break
-                                                        @case(50)
-                                                            Basic
+                                                        @case(5)
+                                                            Blue up
                                                             @break
                                                         @default
                                                             Unknown
@@ -51,14 +51,14 @@
                                                 </td>
                                                 <td class="px-4 py-4 whitespace-nowrap">
                                                     @switch($package)
-                                                        @case(200)
-                                                            100 GB
+                                                        @case(1)
+                                                            1 GB
                                                             @break
-                                                        @case(100)
-                                                            50 GB
+                                                        @case(2)
+                                                            2 GB
                                                             @break
-                                                        @case(50)
-                                                            30 GB
+                                                        @case(5)
+                                                            5 GB
                                                             @break
                                                         @default
                                                             N/A

@@ -25,23 +25,13 @@
                                 </label>
 
                                 <div class="space-y-2">
+                                    @foreach($new_datas as $data)
                                     <label class="flex items-center space-x-2">
-                                        <input type="checkbox" wire:model="packages" value="50"
+                                        <input type="checkbox" wire:model="packages" value="{{$data->price}}"
                                                class="rounded border-gray-300 focus:ring-2 focus:ring-blue-500">
-                                        <span>30 GB - GHC 50</span>
+                                        <span>{{$data->quantity}} - GH{{$data->price}}</span>
                                     </label>
-
-                                    <label class="flex items-center space-x-2">
-                                        <input type="checkbox" wire:model="packages" value="100"
-                                               class="rounded border-gray-300 focus:ring-2 focus:ring-blue-500">
-                                        <span>50 GB - GHC 100</span>
-                                    </label>
-
-                                    <label class="flex items-center space-x-2">
-                                        <input type="checkbox" wire:model="packages" value="200"
-                                               class="rounded border-gray-300 focus:ring-2 focus:ring-blue-500">
-                                        <span>100 GB - GHC 200</span>
-                                    </label>
+                                    @endforeach
                                 </div>
 
                                 @error('packages')
@@ -158,27 +148,27 @@
                                                 <tr class="hover:bg-gray-50">
                                                     <td class="px-4 py-4 whitespace-nowrap">
                                                         @switch($package)
-                                                            @case('200')
-                                                                Enterprise
+                                                            @case('1')
+                                                                One Ghana for your pocket
                                                                 @break
-                                                            @case('100')
-                                                                Start up
+                                                            @case('2')
+                                                                Ashanti Two
                                                                 @break
-                                                            @case('50')
-                                                                Basic
+                                                            @case('5')
+                                                                Blue up
                                                                 @break
                                                         @endswitch
                                                     </td>
                                                     <td class="px-4 py-4 whitespace-nowrap">
                                                         @switch($package)
-                                                            @case('200')
-                                                                100 GB
+                                                            @case('1')
+                                                                1 GB
                                                                 @break
-                                                            @case('100')
-                                                                50 GB
+                                                            @case('2')
+                                                                2 GB
                                                                 @break
-                                                            @case('50')
-                                                                30 GB
+                                                            @case('5')
+                                                                5 GB
                                                                 @break
                                                         @endswitch
                                                     </td>

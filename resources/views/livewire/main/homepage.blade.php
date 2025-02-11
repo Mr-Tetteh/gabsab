@@ -108,9 +108,9 @@
                                     <select wire:model="package"
                                             class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition-all">
                                         <option value="">Choose your package</option>
-                                        <option value="50">30 GB - GHC 50</option>
-                                        <option value="100">50 GB - GHC 100</option>
-                                        <option value="200">100 GB - GHC 200</option>
+                                        @foreach($datas as $data)
+                                        <option value="{{$data->price}}">{{$data->quantity}} - GHC {{$data->price}}</option>
+                                        @endforeach
                                     </select>
                                     @error('package')
                                     <p class="text-red-600 text-sm">{{$message}}</p>
