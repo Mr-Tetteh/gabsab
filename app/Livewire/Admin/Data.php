@@ -114,6 +114,7 @@ class Data extends Component
     {
         $user = Auth::user()->id;
         $datas = \App\Models\Data::where('user_id', $user)->latest()->paginate(10);
-        return view('livewire.admin.data', compact('datas'));
+        $new_datas = \App\Models\BundlePlans::all();
+        return view('livewire.admin.data', compact('datas', 'new_datas'));
     }
 }

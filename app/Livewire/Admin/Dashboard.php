@@ -23,15 +23,11 @@ class Dashboard extends Component
         $today_users = User::whereDate('created_at', now()->toDateString())->count();
         $all_data = \App\Models\Data::all()->count();
         $today_data = \App\Models\Data::whereDate('created_at', now()->toDateString())->count();
-        $logged_in_users = \DB::table('sessions')
-            ->where('user_id', '!=', null)
-            ->distinct('user_id')
-            ->count('user_id');
+
 
         $data_purchase = \App\Models\Data::selectRaw('DATE(created_at) as date, COUNT(*) as count')
             ->groupBy('date')
             ->pluck('count', 'date');
-
 
         return view('livewire.admin.dashboard', compact('user', 'all_users',
             'admin_users', 'today_users', 'all_data', 'today_data', 'resellers_users', 'user_users','data_purchase'));
