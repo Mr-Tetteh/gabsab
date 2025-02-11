@@ -74,7 +74,7 @@
                 </div>
 
                 <!-- Right Content - Verify & Purchase Form -->
-                <div class="w-full lg:w-1/2 z-10 ">
+                <div class="w-full lg:w-1/2 z-10 motion-preset-bounce motion-duration-2000">
                     <div class="bg-white/10 backdrop-blur-xl rounded-3xl p-8 shadow-2xl border border-white/10">
                         <!-- Verification Section -->
                         <div class="mb-12 text-center">

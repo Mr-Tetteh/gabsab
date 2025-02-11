@@ -17,7 +17,7 @@ class Data extends Component
     public $amount;
     public $quantity = '';
     public $user_id;
-
+    public $calculatedTotal = 0; // New property for live total
 
     protected $rules = [
         'packages' => 'required|array|min:1',
@@ -25,7 +25,6 @@ class Data extends Component
         'quantity' => 'required|string',
         'amount' => 'required|numeric',
     ];
-
 
     protected $messages = [
         'packages.required' => 'Please select at least one data package.',
@@ -37,6 +36,37 @@ class Data extends Component
         'quantity.required' => 'Quantity is required.',
     ];
 
+    public function updated($propertyName)
+    {
+        if ($propertyName === 'packages' || $propertyName === 'quantity') {
+            $this->calculateTotal();
+        }
+    }
+
+    public function mount()
+    {
+        $this->calculateTotal(); // Initialize total on component mount
+    }
+
+    private function calculateTotal()
+    {
+        $total = 0;
+
+        if (!empty($this->packages) && !empty($this->quantity)) {
+            $quantityArray = array_map('trim', explode(',', $this->quantity));
+
+            if (count($quantityArray) === count($this->packages)) {
+                foreach ($this->packages as $index => $package) {
+                    if (isset($quantityArray[$index]) && is_numeric($quantityArray[$index]) && $quantityArray[$index] > 0) {
+                        $total += (float)$package * (float)$quantityArray[$index];
+                    }
+                }
+            }
+        }
+
+        $this->calculatedTotal = $total;
+        $this->amount = $total; // Update the amount field as well
+    }
 
     public function resetForm()
     {
@@ -44,9 +74,8 @@ class Data extends Component
         $this->number = null;
         $this->amount = null;
         $this->user_id = null;
-        $this->quantity = [];
-
-
+        $this->quantity = '';
+        $this->calculatedTotal = 0;
     }
 
     public function create()
@@ -62,8 +91,7 @@ class Data extends Component
 
         foreach ($quantityArray as $qty) {
             if (!is_numeric($qty) || $qty <= 0) {
-                $this->addError('quantity', 'All quantities must be valid positive numbers.
-                 Please refresh the page');
+                $this->addError('quantity', 'All quantities must be valid positive numbers. Please refresh the page');
                 return;
             }
         }
@@ -75,10 +103,12 @@ class Data extends Component
             'quantity' => json_encode($quantityArray),
             'user_id' => Auth::user()->id,
         ]);
+
         session()->flash('message', 'Data Purchased successfully. Please wait while we process');
-//        sendWithSMSONLINEGH('233'.substr($this->number, -9),'Hello '. Auth::user()->first_name .' your Data your Purchased successfully we will send you the Voucher pins within the next 30 min');
+        sendWithSMSONLINEGH('233'.substr($this->number, -9), 'Hello '. Auth::user()->first_name .' your Data your Purchased successfully we will send you the Voucher pins within the next 30 min');
         $this->resetForm();
     }
+
 
     public function render()
     {
