@@ -73,7 +73,7 @@ class HomeService extends Component
     }
     public function edit($id)
     {
-        $bundle = \App\Models\BundlePlans::findOrFail($id);
+        $bundle = HomeServiceData::findOrFail($id);
         $this->unit_id = $bundle->id;
         $this->name = $bundle->name;
         $this->price = $bundle->price;
@@ -94,7 +94,7 @@ class HomeService extends Component
     public function update()
     {
         $this->validate();
-        $bundle = \App\Models\BundlePlans::findorFail($this->unit_id);
+        $bundle = HomeServiceData::findorFail($this->unit_id);
         $bundle->update([
             'name' => $this->name,
             'price' => $this->price,
@@ -117,7 +117,7 @@ class HomeService extends Component
 
     public function delete($id)
     {
-        \App\Models\BundlePlans::findOrFail($id)->delete();
+        HomeServiceData::findOrFail($id)->delete();
     }
     public function render()
     {
