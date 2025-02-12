@@ -13,6 +13,7 @@ Route::middleware('auth')->group(function () {
         Route::get('faqs', \App\Livewire\Admin\Faqs::class)->name('admin.faqs');
         Route::get('users', \App\Livewire\Admin\Users::class)->name('admin.users');
         Route::get('bundle_plans', \App\Livewire\Admin\BundlePlans::class)->name('admin.bundle-plans');
+        Route::get('home_service_plans', \App\Livewire\Admin\HomeService::class)->name('admin.home-service-plans');
     });
 
 
