@@ -59,6 +59,16 @@
                     <span class="ms-3">Set Bundle Price</span>
                 </a>
             </li>
+            <li>
+                <a href="{{route('admin.home-service-plans')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100
+        dark:hover:bg-gray-700 group transition duration-200">
+                    <svg class="w-5 h-5 text-gray-500 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                         fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2 7c0-1.1.9-2 2-2h16c1.1 0 2 .9 2 2v10c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V7zm2 0v10h16V7H4zm12 4h4v2h-4v-2z"/>
+                    </svg>
+                    <span class="ms-3">Set Contract Bundle Price</span>
+                </a>
+            </li>
 
             <li>
                 <a href="{{route('admin.purchased-data')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
