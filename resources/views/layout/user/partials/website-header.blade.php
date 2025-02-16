@@ -19,6 +19,7 @@
             <!-- Desktop Navigation -->
             <nav class="hidden lg:block">
                 <ul class="flex items-center space-x-1">
+                    @if(\Illuminate\Support\Facades\Auth::user())
                     <li class="relative group">
                         <a href="{{route('admin.dashboard')}}" class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 rounded-lg group-hover:text-blue-600 group-hover:bg-blue-50 transition-all duration-200">
                             <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -28,6 +29,7 @@
                             <span class="absolute inset-x-0 -bottom-px h-px bg-gradient-to-r from-blue-500/0 via-blue-500/70 to-blue-500/0 opacity-0 transition-opacity duration-200 group-hover:opacity-100"></span>
                         </a>
                     </li>
+                    @endif
                     <li class="relative group">
                         <a href="{{route('users.home')}}" class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 rounded-lg group-hover:text-blue-600 group-hover:bg-blue-50 transition-all duration-200">
                             Home
@@ -78,7 +80,8 @@
             </nav>
 
             <!-- Mobile Menu Button -->
-            <button data-drawer-target="default-sidebar" data-drawer-toggle="default-sidebar" aria-controls="default-sidebar" type="button" class="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+            <!-- Mobile Menu Button -->
+            <button class="hand_bugger inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
                 <span class="sr-only">Open sidebar</span>
                 <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                     <path clip-rule="evenodd" fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
@@ -88,20 +91,65 @@
             <!-- Mobile Menu (Hidden by default) -->
             <div class=" hidden lg:hidden absolute top-full left-0 right-0 bg-white/95 backdrop-blur-sm shadow-lg border-t border-gray-100 nav_menu">
                 <nav class="container mx-auto px-4 py-6 space-y-1">
-                    <a href="#" class="flex items-center px-4 py-3 text-sm font-medium text-gray-700 rounded-lg hover:text-blue-600 hover:bg-blue-50 transition-all duration-200">
+                   @if(\Illuminate\Support\Facades\Auth::user())
+                    <a href="{{route('admin.dashboard')}}" class="flex items-center px-4 py-3 text-sm font-medium text-gray-700 rounded-lg hover:text-blue-600 hover:bg-blue-50 transition-all duration-200">
                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                         </svg>
                         Admin
                     </a>
-
+                    @endif
                     <a href="{{route('users.home')}}" class="flex items-center px-4 py-3 text-sm font-medium text-gray-700 rounded-lg hover:text-blue-600 hover:bg-blue-50 transition-all duration-200"> Home</a>
                     <a href="{{route('users.about')}}" class="flex items-center px-4 py-3 text-sm font-medium text-gray-700 rounded-lg hover:text-blue-600 hover:bg-blue-50 transition-all duration-200">About</a>
                     <a href="{{route('users.contact')}}" class="flex items-center px-4 py-3 text-sm font-medium text-gray-700 rounded-lg hover:text-blue-600 hover:bg-blue-50 transition-all duration-200">Contact</a>
+                   @guest()
                     <a href="{{route('login')}}" class="flex items-center px-4 py-3 text-sm font-medium text-gray-700 rounded-lg hover:text-blue-600 hover:bg-blue-50 transition-all duration-200">Login</a>
                     <a href="{{route('register')}}" class="flex items-center px-4 py-3 text-sm font-medium text-gray-700 rounded-lg hover:text-blue-600 hover:bg-blue-50 transition-all duration-200">Register</a>
+                    @endguest
+                    @auth
+                            <form method="POST" action="{{ route('logout') }}" class="flex items-center px-4 py-3 text-sm font-medium text-gray-700 rounded-lg hover:text-blue-600 hover:bg-blue-50 transition-all duration-200"">
+                                @csrf
+                                <x-responsive-nav-link :href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                    {{ __('Log Out') }}
+                                </x-responsive-nav-link>
+                            </form>
+                    @endauth
                 </nav>
             </div>
         </div>
     </div>
 </header>
+
+
+<script>
+
+
+    // Menu items logic
+    const menuItems = document.querySelectorAll('.menu-item');
+    menuItems.forEach(item => {
+        const button = item.querySelector('button');
+        if (button) {
+            button.addEventListener('click', () => {
+                item.classList.toggle('open');
+                const submenu = item.querySelector('.submenu');
+                if (submenu) {
+                    submenu.classList.toggle('open');
+                }
+            });
+        }
+    });
+
+    // Hamburger menu logic
+    const hamburger = document.querySelector('.hand_bugger');
+    const navMenu = document.querySelector('.nav_menu');
+
+    if (hamburger && navMenu) {  // Add error checking
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('hidden');
+        });
+    }
+
+
+</script>
+

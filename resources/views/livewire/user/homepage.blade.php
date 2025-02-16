@@ -395,7 +395,7 @@
                                                 </label>
                                                 <select wire:model="contract_type"
                                                         class="block w-full px-4 py-2.5 text-gray-900 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white">
-                                                    <option value="" disabled selected>Select a contract type</option>
+                                                    <option disabled selected>Select a contract type</option>
                                                     @foreach($datum as $data)
                                                         <option value="{{$data->name}}">{{$data->name}} - GHC {{$data->price}}</option>
                                                     @endforeach
@@ -444,38 +444,8 @@
 
 
 @script
-{{--<script>--}}
-{{--    // Select all buttons with the 'contract' class--}}
-{{--    const contractButtons = document.querySelectorAll('.contract');--}}
-{{--    const modal = document.querySelector('.modal');--}}
-{{--    const cancelButton = modal.querySelector('button:last-child');--}}
+<script>
 
-{{--    // Add click event listener to each contract button--}}
-{{--    contractButtons.forEach(button => {--}}
-{{--        button.addEventListener('click', () => {--}}
-{{--            modal.classList.remove('hidden');--}}
-{{--        });--}}
-{{--    });--}}
-
-{{--    // Add click event listener to the cancel button--}}
-{{--    cancelButton.addEventListener('click', () => {--}}
-{{--        modal.classList.add('hidden');--}}
-{{--    });--}}
-
-{{--    // Close modal when clicking outside--}}
-{{--    modal.addEventListener('click', (e) => {--}}
-{{--        if (e.target === modal) {--}}
-{{--            modal.classList.add('hidden');--}}
-{{--        }--}}
-{{--    });--}}
-
-{{--    // Close modal with Escape key--}}
-{{--    document.addEventListener('keydown', (e) => {--}}
-{{--        if (e.key === 'Escape' && !modal.classList.contains('hidden')) {--}}
-{{--            modal.classList.add('hidden');--}}
-{{--        }--}}
-{{--    });--}}
-{{--</script>--}}
-
+</script>
 
 @endscript
