@@ -229,7 +229,7 @@
 
                     <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
                         <div class="flex min-h-full items-center justify-center p-4">
-                            <div class="relative transform overflow-hidden rounded-2xl bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-2xl">
+                            <div class="relative transform  md:mb-4 overflow-hidden rounded-2xl bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-2xl">
                                 <!-- Modal Header -->
                                 <div class="bg-gradient-to-r from-blue-600 to-blue-800 px-6 py-4">
                                     <h2 class="text-2xl font-bold text-white">Contract Request Form</h2>
@@ -443,9 +443,3 @@
 </div>
 
 
-@script
-<script>
-
-</script>
-
-@endscript

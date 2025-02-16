@@ -15,6 +15,7 @@ Route::middleware('auth')->group(function () {
         Route::get('bundle_plans', \App\Livewire\Admin\BundlePlans::class)->name('admin.bundle-plans');
         Route::get('home_service_plans', \App\Livewire\Admin\HomeService::class)->name('admin.home-service-plans');
         Route::get('admin_by_data', \App\Livewire\Admin\BuyData::class)->name('admin.buy-data');
+        Route::get('contract', \App\Livewire\Admin\Contracts::class)->name('admin.contracts');
     });
 
 
