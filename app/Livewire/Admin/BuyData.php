@@ -66,7 +66,7 @@ class BuyData extends Component
     public function render()
     {
         $datas = \App\Models\BundlePlans::all();
-        $dataum = \App\Models\Data::where('user_id', Auth::id())->get();
+        $dataum = \App\Models\Data::where('user_id', Auth::id())->latest()->paginate(5);
 
         return view('livewire.admin.buy-data', compact('datas', 'dataum'));
     }

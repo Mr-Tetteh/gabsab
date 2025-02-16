@@ -166,6 +166,7 @@
                                     @endforeach
                                 @endif
                                 </tbody>
+                                {{$dataum->links()}}
                             </table>
                         </div>
                     </div>

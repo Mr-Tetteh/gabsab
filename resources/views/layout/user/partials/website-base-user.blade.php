@@ -49,6 +49,8 @@
 
 <!-- Main JS File -->
 <script src="{{asset('website/assets/js/main.js')}}"></script>
+
+
 @livewireScripts
 @stack('scripts')
 </body>

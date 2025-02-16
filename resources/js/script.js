@@ -15,10 +15,10 @@ menuItems.forEach(item => {
     }
 });
 
-
-const hand_bugger = document.querySelector('.hand_bugger')
-const nav_menu = document.querySelector('.nav_menu')
-hand_bugger.addEventListener('click', function () {
-    nav_menu.classList.toggle('hidden')
-    nav_menu.style.scrollBehavior = "smooth"
-})
+const hand_bugger = document.querySelector('.hand_bugger');
+const nav_menu = document.querySelector('.nav_menu');
+if (hand_bugger && nav_menu) {
+    hand_bugger.addEventListener('click', function () {
+        nav_menu.classList.toggle('hidden');
+    });
+}
