@@ -18,6 +18,7 @@ class Users extends Component
     public $gender;
     public $date_of_birth;
     public $user_id;
+    public $modal;
     public $isEdit = false;
 
 
@@ -48,6 +49,24 @@ class Users extends Component
 
         $this->isEdit = true;
 
+    }
+
+    protected $listeners = ['executeFunctions'];
+
+
+    public function executeFunctions($id)
+    {
+        $this->edit($id);
+        $this->toggleModal();
+    }
+    public function toggleModal()
+    {
+        $this->modal = true;
+    }
+
+    public function closeModal()
+    {
+        $this->modal = false;
     }
 
     public function updateRole()
