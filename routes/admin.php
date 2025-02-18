@@ -1,21 +1,28 @@
 <?php
 
+use App\Http\Middleware\EnsureRoleIsAdmin;
+use App\Livewire\Admin\BundlePlans;
+use App\Livewire\Admin\BuyData;
+use App\Livewire\Admin\Contracts;
+use App\Livewire\Admin\Dashboard;
+use App\Livewire\Admin\Data;
+use App\Livewire\Admin\Faqs;
+use App\Livewire\Admin\HomeService;
+use App\Livewire\Admin\PurcahseData;
 use App\Livewire\Admin\UserDashboard;
+use App\Livewire\Admin\Users;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->group(function () {
 
     Route::prefix('admin')->group(function () {
-        Route::get('/dashboard', \App\Livewire\Admin\Dashboard::class)->name('admin.dashboard');
-        Route::get('buy-data', \App\Livewire\Admin\Data::class)->name('admin.data');
-        Route::get('user-dashboard', UserDashboard::class)->name('admin.user-dashboard');
-        Route::get('purchased_data', \App\Livewire\Admin\PurcahseData::class)->name('admin.purchased-data');
-        Route::get('faqs', \App\Livewire\Admin\Faqs::class)->name('admin.faqs');
-        Route::get('users', \App\Livewire\Admin\Users::class)->name('admin.users');
-        Route::get('bundle_plans', \App\Livewire\Admin\BundlePlans::class)->name('admin.bundle-plans');
-        Route::get('home_service_plans', \App\Livewire\Admin\HomeService::class)->name('admin.home-service-plans');
-        Route::get('admin_by_data', \App\Livewire\Admin\BuyData::class)->name('admin.buy-data');
-        Route::get('contract', \App\Livewire\Admin\Contracts::class)->name('admin.contracts');
+        Route::get('/dashboard', Dashboard::class)->name('admin.dashboard')->middleware(EnsureRoleIsAdmin::class);
+        Route::get('purchased_data', PurcahseData::class)->name('admin.purchased-data')->middleware(EnsureRoleIsAdmin::class);
+        Route::get('faqs', Faqs::class)->name('admin.faqs')->middleware(EnsureRoleIsAdmin::class);
+        Route::get('users', Users::class)->name('admin.users')->middleware(EnsureRoleIsAdmin::class);
+        Route::get('bundle_plans', BundlePlans::class)->name('admin.bundle-plans')->middleware(EnsureRoleIsAdmin::class);
+        Route::get('home_service_plans', HomeService::class)->name('admin.home-service-plans')->middleware(EnsureRoleIsAdmin::class);
+        Route::get('contract', Contracts::class)->name('admin.contracts')->middleware(EnsureRoleIsAdmin::class);
     });
 
 
