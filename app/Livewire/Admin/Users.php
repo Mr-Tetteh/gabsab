@@ -82,6 +82,7 @@ class Users extends Component
        session()->flash('message', 'User Role Updated Successfully.');
        $this->resetForm();
        $this->isEdit = false;
+       $this->modal = false;
     }
 
     public function render()

@@ -140,9 +140,18 @@
                                     @else
                                         @foreach($datas as $data)
                                             @php
-                                                $packages = json_decode($data->package);
-                                                $quantities = json_decode($data->quantity);
+                                                $packages = json_decode($data->package, true);
+                                                $quantities = json_decode($data->quantity, true);
+
+                                                // Add safety check
+                                                if (!is_array($packages)) {
+                                                    $packages = [$data->package];
+                                                }
+                                                if (!is_array($quantities)) {
+                                                    $quantities = [$data->quantity];
+                                                }
                                             @endphp
+
 
                                             @foreach($packages as $index => $package)
                                                 <tr class="hover:bg-gray-50">
