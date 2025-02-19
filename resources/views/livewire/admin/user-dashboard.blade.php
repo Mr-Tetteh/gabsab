@@ -33,7 +33,7 @@
     </header>
 
     <!-- Stats Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="flex flex-col md:flex-cols-2 lg:flex-cols-3 gap-8 w-full">
         <!-- Total Users Card -->
 
         <!-- Data Buyers Card -->
@@ -64,18 +64,6 @@
             </div>
         </div>
 
-        <div
-            class="bg-white rounded-xl shadow-sm border-l-4 border-yellow-500 p-6 hover:shadow-md transition-shadow duration-200">
-            <div class="flex items-center">
-                <div class="w-12 h-12 rounded-full bg-yellow-100 flex items-center justify-center">
-                    <i class="fas fa-wallet text-xl text-yellow-500"></i>
-                </div>
-                <div class="ml-4">
-                    <h3 class="text-sm font-medium text-gray-500">Wallet</h3>
-                    <p class="text-2xl font-bold text-yellow-500">GHC 50.00</p>
-                </div>
-            </div>
-        </div>
 
 
     </div>

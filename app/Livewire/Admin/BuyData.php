@@ -53,11 +53,11 @@ class BuyData extends Component
             'user_id' => Auth::id(),
         ]);
 
-        \sendWithSMSONLINEGH(
-            '233' . substr($this->number, -9),
-            'Dear ' . Auth::user()->first_name . ', your data package ' . $packageName . ' has been purchased successfully. ' .
-            'Your Voucher pin is ' . $Voucher . '. Happy browsing.'
-        );
+//        \sendWithSMSONLINEGH(
+//            '233' . substr($this->number, -9),
+//            'Dear ' . Auth::user()->first_name . ', your data package ' . $packageName . ' has been purchased successfully. ' .
+//            'Your Voucher pin is ' . $Voucher . '. Happy browsing.'
+//        );
         session()->flash('message', 'Data Purchased successfully. You will receive an SMS soon with your Voucher Pin');
         $this->resetForm();
 
