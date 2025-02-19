@@ -18,7 +18,7 @@ class EnsureRoleIsAdmin
     {
         if (!Auth::check() || Auth::user()->role != 'admin')
         {
-            return redirect('/admin/user-dashboard');
+            return redirect('/user-dashboard');
         }
         return $next($request);
     }

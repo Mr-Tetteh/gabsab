@@ -14,10 +14,10 @@ class UserDashboard extends Component
     public function render()
     {
         $user = Auth::user();
-        $user_id   = Auth::id();
+        $user_id = Auth::id();
 
         $logged_in_user_data = \App\Models\Data::where('user_id',$user_id)->count();
-        $today_purchase = \App\Models\Data::whereDate('created_at',  now()->toDateString())->count();
+        $today_purchase = \App\Models\Data::whereDate('created_at',  now()->toDateString())->where('user_id', $user_id)->count();
 
         return view('livewire.admin.user-dashboard', compact('user' , 'logged_in_user_data', 'today_purchase'));
     }
