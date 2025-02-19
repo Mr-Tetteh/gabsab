@@ -58,8 +58,8 @@
                                     </label>
                                     <input wire:model="number"
                                            type="tel"
-                                           placeholder="Enter your phone number"
                                            class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition-all"
+                                           value="{{$user->contact}}"
                                     >
                                     @error('number')
                                     <p class="text-red-600 text-sm">{{$message}}</p>
