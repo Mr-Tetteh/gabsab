@@ -165,7 +165,7 @@
 
 
                     <div>
-                        <x-input-label for="address" :value="__('Address')" class="font-medium"/>
+                        <x-input-label for="address" :value="__('Location')" class="font-medium"/>
                         <div class="mt-1">
                             <x-text-input
                                 id="address"

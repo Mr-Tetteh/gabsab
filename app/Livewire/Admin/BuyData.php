@@ -16,7 +16,13 @@ class BuyData extends Component
     public $user_id;
     public $message;
     public $quantity = '';
+    public $contact;
 
+public function   mount()
+{
+    $this->number = \auth()->user()->contact;
+
+}
 
     protected $rules = [
         'package' => 'required',
@@ -67,7 +73,8 @@ class BuyData extends Component
     {
         $datas = \App\Models\BundlePlans::all();
         $dataum = \App\Models\Data::where('user_id', Auth::id())->latest()->paginate(5);
+        $user = \App\Models\User::find(Auth::id());
 
-        return view('livewire.admin.buy-data', compact('datas', 'dataum'));
+        return view('livewire.admin.buy-data', compact('datas', 'dataum', 'user'));
     }
 }
