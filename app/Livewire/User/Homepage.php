@@ -5,6 +5,7 @@ namespace App\Livewire\User;
 use App\Models\BundlePlans;
 use App\Models\ContractFroms;
 use App\Models\HomeServiceData;
+use App\Models\Locations;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 
@@ -88,6 +89,7 @@ protected $messages = [
     {
         $datas = BundlePlans::all();
         $datum  =  HomeServiceData::all();
-        return view('livewire.user.homepage', compact('datas', 'datum'));
+        $maps = Locations::all();
+        return view('livewire.user.homepage', compact('datas', 'datum', 'maps'));
     }
 }
