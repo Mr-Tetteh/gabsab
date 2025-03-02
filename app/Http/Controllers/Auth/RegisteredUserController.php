@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use phpDocumentor\Reflection\Location;
+use App\Models\Locations;
+
 
 class RegisteredUserController extends Controller
 {
@@ -19,7 +22,8 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        return view('auth.register');
+        $locations = Locations::all();
+        return view('auth.register', compact('locations'));
     }
 
     /**

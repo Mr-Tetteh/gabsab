@@ -167,38 +167,24 @@
                     <div>
                         <x-input-label for="address" :value="__('Location')" class="font-medium"/>
                         <div class="mt-1">
-                            <x-text-input
-                                id="address"
-                                type="text"
-                                name="address"
-                                :value="old('address')"
-                                autocomplete="street-address"
-                                class="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-200 dark:bg-gray-700 dark:text-gray-100"
-                                placeholder="Enter your full address"
-
-                            />
-                        </div>
-                        <x-input-error :messages="$errors->get('address')" class="mt-2"/>
-                    </div>
-                    <!-- Address -->
-{{--
-                    <div>
-                        <x-input-label for="address" :value="__('Role')" class="font-medium"/>
-                        <div class="mt-1">
                             <select
-                                id="gender"
-                                name="gender"
+                                id="address"
+                                name="address"
                                 class="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-200 dark:bg-gray-700 dark:text-gray-100"
-
                             >
-                                <option value="">Select Gender</option>
-                                <option value="male" {{ old('gender') == 'male' ? 'selected' : '' }}>Male</option>
-                                <option value="female" {{ old('gender') == 'female' ? 'selected' : '' }}>Female</option>
+                                <option value="">Select Location</option>
+                                @foreach($locations as $location)
+                                    <option
+                                        value="{{$location->location_name}}"
+                                        {{ old('address') == $location->location_name ? 'selected' : '' }}>
+                                        {{$location->location_name}}
+                                    </option>
+                                @endforeach
                             </select>
                         </div>
                         <x-input-error :messages="$errors->get('address')" class="mt-2"/>
                     </div>
---}}
+
 
                     <!-- Password -->
                     <div>

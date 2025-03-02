@@ -640,12 +640,12 @@
         </div>
     </section>
 
-
     <section class="py-20 bg-gradient-to-br from-gray-50 to-gray-100">
         <div class="container mx-auto px-4">
-            @include('livewire.user.map')
+         @include('livewire.user.map')
         </div>
     </section>
+
 
 </div>
 
