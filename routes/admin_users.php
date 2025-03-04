@@ -12,6 +12,7 @@ Route::middleware('auth')->group(function () {
     Route::get('admin_by_data', BuyData::class)->name('admin.buy-data');
     Route::get('buy-data', Data::class)->name('admin.data');
     Route::get('/location', \App\Livewire\Admin\Locations::class)->name('admin.location');
+    Route::get('/leaders', \App\Livewire\Admin\Leaders::class)->name('admin.leaders');
 
 
 
