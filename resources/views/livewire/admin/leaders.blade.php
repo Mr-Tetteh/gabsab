@@ -55,18 +55,24 @@
                                                 <button wire:click="executeFunctions({{ $data->id }})"
                                                         class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-xl flex items-center space-x-2 transition duration-200 ease-in-out shadow-sm hover:shadow">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
-                                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                         viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                         stroke-width="2" stroke-linecap="round"
+                                                         stroke-linejoin="round">
                                                         <path d="M12 20h9"/>
-                                                        <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+                                                        <path
+                                                            d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
                                                     </svg>
                                                     Edit
                                                 </button>
                                                 <button wire:click="delete({{ $data->id }})"
                                                         class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-xl flex items-center space-x-2 transition duration-200 ease-in-out shadow-sm hover:shadow">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
-                                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                         viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                         stroke-width="2" stroke-linecap="round"
+                                                         stroke-linejoin="round">
                                                         <polyline points="3 6 5 6 21 6"/>
-                                                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                                                        <path
+                                                            d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
                                                         <line x1="10" y1="11" x2="10" y2="17"/>
                                                         <line x1="14" y1="11" x2="14" y2="17"/>
                                                     </svg>
@@ -74,6 +80,8 @@
                                                 </button>
                                             </div>
                                         </td>
+                                        </tr>
+
                                     @endforeach
                                 @endif
                                 </tbody>
@@ -257,6 +265,18 @@
                                                                 <input type="file" wire:model="image"
                                                                        class="block w-full pl-10 pr-4 py-2.5 text-gray-900 placeholder-gray-400 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                                                             </div>
+                                                            @if($edit)
+                                                                <img src="{{Storage::url($image)}}" width="40%"
+                                                                     class="rounded-2xl" alt="">
+                                                            @endif
+
+                                                            @if ($image)
+                                                                @if(method_exists($image, 'temporaryUrl'))
+                                                                    <img src="{{ $image->temporaryUrl() }}" width="60%"
+                                                                         height="40%" class="rounded-lg mt-3">
+                                                                @endif
+                                                            @endif
+
                                                             @error('image')
                                                             <p class="text-sm text-red-600">{{$message}}</p>
                                                             @enderror

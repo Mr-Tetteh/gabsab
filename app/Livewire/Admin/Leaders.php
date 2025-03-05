@@ -4,6 +4,7 @@ namespace App\Livewire\Admin;
 
 use Livewire\Attributes\Layout;
 use Livewire\Component;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 use Livewire\WithFileUploads;
 
 class Leaders extends Component
@@ -59,8 +60,37 @@ class Leaders extends Component
       $this->position = $leader->position;
       $this->department = $leader->department;
       $this->image = $leader->image;
+      $this->edit = true;
+    }
 
+    public function update()
+    {
+        $validatedData = $this->validate([
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'other_names' => 'nullable|string|max:255',
+            'position' => 'required|string|max:255',
+            'department' => 'required|string|max:255',
+        ]);
 
+        if ($this->image instanceof TemporaryUploadedFile) {
+            $filePath = $this->store('events', 'public');
+        } else {
+            $filePath = $this->image;
+        }
+
+        \App\Models\Leaders::findOrFail($this->leader_id)->update([
+            'first_name' => $this->first_name,
+            'last_name' => $this->last_name,
+            'other_names' => $this->other_names,
+            'position' => $this->position,
+            'department' => $this->department,
+            'image' => $filePath
+
+        ]);
+        session()->flash('message', 'Leader successfully updated.');
+        $this->resetForm();
+        $this->modal = false;
     }
     public function delete($id)
     {

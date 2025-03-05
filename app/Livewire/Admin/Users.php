@@ -46,7 +46,6 @@ class Users extends Component
         $this->contact = $user->contact;
         $this->address = $user->address;
         $this->role = $user->role;
-
         $this->isEdit = true;
 
     }
