@@ -647,6 +647,13 @@
     </section>
 
 
+    <section class="py-20 bg-purple-400 from-gray-50 to-gray-100">
+        <div class="container mx-auto px-4">
+            @include('livewire.user.leaders')
+        </div>
+    </section>
+
+
 </div>
 
 

@@ -90,6 +90,7 @@ protected $messages = [
         $datas = BundlePlans::all();
         $datum  =  HomeServiceData::all();
         $maps = Locations::all();
-        return view('livewire.user.homepage', compact('datas', 'datum', 'maps'));
+        $leaders = \App\Models\Leaders::all();
+        return view('livewire.user.homepage', compact('datas', 'datum', 'maps', 'leaders'));
     }
 }
