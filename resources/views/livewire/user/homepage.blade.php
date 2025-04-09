@@ -165,13 +165,13 @@
                         <div
                             class="absolute z-30 flex -translate-x-1/2 bottom-8 left-1/2 space-x-4 rtl:space-x-reverse">
                             <button type="button"
-                                    class="w-4 h-4 rounded-full bg-white/30 hover:bg-white/60 transition-all duration-300"
+                                    class="w-4 h-4 rounded-full bg-white/30 hover:bg-white/60 transition-all duration-800"
                                     aria-current="true" aria-label="Slide 1" data-carousel-slide-to="0"></button>
                             <button type="button"
-                                    class="w-4 h-4 rounded-full bg-white/30 hover:bg-white/60 transition-all duration-300"
+                                    class="w-4 h-4 rounded-full bg-white/30 hover:bg-white/60 transition-all duration-800"
                                     aria-current="false" aria-label="Slide 2" data-carousel-slide-to="1"></button>
                             <button type="button"
-                                    class="w-4 h-4 rounded-full bg-white/30 hover:bg-white/60 transition-all duration-300"
+                                    class="w-4 h-4 rounded-full bg-white/30 hover:bg-white/60 transition-all duration-800"
                                     aria-current="false" aria-label="Slide 3" data-carousel-slide-to="2"></button>
                         </div>
 
@@ -642,7 +642,7 @@
 
     <section class="py-20 bg-gradient-to-br from-gray-50 to-gray-100">
         <div class="container mx-auto px-4">
-         @include('livewire.user.map')
+            @include('livewire.user.map')
         </div>
     </section>
 

@@ -9,12 +9,12 @@
                 class="absolute -bottom-8 left-20 w-72 h-72 bg-indigo-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
     </div>
 
-
     <section class="relative py-20 mt-20 px-4 min-h-screen  from-gray-900 to-gray-800">
         <div class="max-w-7xl mx-auto">
             <div class="flex flex-col lg:flex-row items-center justify-between gap-16">
                 <!-- Left Content - Hero Section -->
                 <div class="w-full lg:w-1/2 text-center lg:text-left z-10 -py-60 space-y-32">
+
                     <div class="space-y-6">
                         <h1 class="text-5xl lg:text-7xl font-black text-white mb-6">
                             ASHANTI

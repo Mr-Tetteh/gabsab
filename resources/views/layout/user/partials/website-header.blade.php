@@ -5,8 +5,10 @@
             <a href="{{route('users.home')}}"
                class="group flex items-center space-x-3 transition-transform duration-300 hover:scale-105">
                 <div class="relative h-10 w-10 overflow-hidden rounded-xl">
-                    <img src="../../../images/309372872_460971846059341_4824700090279169467_n.jpg" alt="Logo"
-                         class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110">
+
+                    <img src="{{asset('images/homepage/WhatsApp Image 2025-04-08 at 16.25.31.jpeg')}}"
+
+                         class="h-full w-full  duration-500 group-hover:scale-110" alt="logo">
                     <div class="absolute inset-0 ring-1 ring-black/5 rounded-xl"></div>
                 </div>
                 <span class="hidden sm:block">

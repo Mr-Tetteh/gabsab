@@ -1,12 +1,10 @@
 <x-guest-layout>
     <div>
-        <div class="max-w-md w-full space-y-8 bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg">
+        <div class="flex flex-col items-center justify-center sm:px-6 lg:px-8 w-full space-y-8 bg-white dark:bg-gray-800  rounded-xl ">
+            <div class="w-4/5 sm:max-w-xl mt-12 px-6 py-4  dark:bg-gray-800">
+
             <!-- Logo and Header -->
             <div class="text-center">
-                <div class="flex justify-center">
-                    <!-- You can add your logo here -->
-                    <img class="h-12 w-auto" src="{{ asset('path-to-your-logo.png') }}" alt="Logo">
-                </div>
                 <h2 class="mt-6 text-3xl font-bold text-gray-900 dark:text-white">
                     Welcome Back!
                 </h2>
