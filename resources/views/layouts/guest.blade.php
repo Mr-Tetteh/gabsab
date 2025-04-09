@@ -18,7 +18,6 @@
 </head>
 <body class="font-sans text-gray-900 antialiased flex flex-col">
 <div class="flex flex-col lg:flex-row h-screen">
-    <!-- Image section: hidden on small/medium screens, visible on large screens -->
     <div class="hidden lg:block lg:w-1/2">
         <img class="w-full rounded-2xl"
              src="@if(Request::route()->getName() === 'login')
