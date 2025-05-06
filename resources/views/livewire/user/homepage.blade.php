@@ -216,7 +216,7 @@
         <div class="container mx-auto px-4">
             <p class="bg-gradient-to-r from-green-400 to-yellow-500 bg-clip-text text-3xl font-bold tracking-tight
             text-transparent sm:text-5xl lg:text-6xl text-gray-400 mb-10 justify-center ml-10 lg:ml-96 lg:px-52">Our
-                Flexible plans</p>
+                Flexible Daily plans</p>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 @foreach($datas as $index => $data)
                     <div
@@ -280,20 +280,7 @@
                                     @endfor
                                 </div>
 
-                                @if(Auth::user())
 
-                                    <a href="{{route('admin.buy-data')}}"
-                                       class="group inline-flex items-center justify-center w-full py-4 px-6 bg-gradient-to-r from-{{ ['red', 'yellow', 'blue'][$index % 3] }}-500 to-{{ ['red', 'yellow', 'blue'][$index % 3] }}-600 text-white font-bold rounded-xl transition-all duration-300 hover:shadow-xl hover:scale-105">
-                                        Choose Plan
-                                        <svg
-                                            class="ml-3 w-6 h-6 transform group-hover:translate-x-1 transition-transform"
-                                            fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                  d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                                        </svg>
-                                    </a>
-                                @else
                                     <a href="{{route('dashboard')}}"
                                        class="group inline-flex items-center justify-center w-full py-4 px-6 bg-gradient-to-r from-{{ ['red', 'yellow', 'blue'][$index % 3] }}-500 to-{{ ['red', 'yellow', 'blue'][$index % 3] }}-600 text-white font-bold rounded-xl transition-all duration-300 hover:shadow-xl hover:scale-105">
                                         Choose Plan
@@ -305,7 +292,6 @@
                                                   d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
                                         </svg>
                                     </a>
-                                @endif
                             </div>
                         </div>
                     </div>
