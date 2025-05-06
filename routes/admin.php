@@ -2,14 +2,11 @@
 
 use App\Http\Middleware\EnsureRoleIsAdmin;
 use App\Livewire\Admin\BundlePlans;
-use App\Livewire\Admin\BuyData;
 use App\Livewire\Admin\Contracts;
 use App\Livewire\Admin\Dashboard;
-use App\Livewire\Admin\Data;
 use App\Livewire\Admin\Faqs;
 use App\Livewire\Admin\HomeService;
 use App\Livewire\Admin\PurcahseData;
-use App\Livewire\Admin\UserDashboard;
 use App\Livewire\Admin\Users;
 use Illuminate\Support\Facades\Route;
 

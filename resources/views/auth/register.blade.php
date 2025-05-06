@@ -136,58 +136,6 @@
                     </div>
                 </div>
 
-                <div class="space-y-4">
-                    <div class="text-gray-700 dark:text-gray-200">Do you want to be a Reseller or a User for better
-                        experience?
-                    </div>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="flex items-center space-x-2">
-                            <x-text-input
-                                id="reseller"
-                                type="radio"
-                                name="role"
-                                value="reseller"
-                                :checked="old('role') === 'reseller'"
-                                class="border-gray-300 dark:border-gray-700 focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700"
-                            />
-                            <x-input-label for="reseller" :value="__('Reseller')" class="font-medium cursor-pointer"/>
-                        </div>
-
-                        <div class="flex items-center space-x-2">
-                            <x-text-input
-                                id="user"
-                                type="radio"
-                                name="role"
-                                value="user"
-                                :checked="old('role') === 'user'"
-                                class="border-gray-300 dark:border-gray-700 focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700"
-                            />
-                            <x-input-label for="user" :value="__('User')" class="font-medium cursor-pointer"/>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div>
-                    <x-input-label for="address" :value="__('Location')" class="font-medium"/>
-                    <div class="mt-1">
-                        <select
-                            id="address"
-                            name="address"
-                            class="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-200 dark:bg-gray-700 dark:text-gray-100"
-                        >
-                            <option value="">Select Location</option>
-                            @foreach($locations as $location)
-                                <option
-                                    value="{{$location->location_name}}"
-                                    {{ old('address') == $location->location_name ? 'selected' : '' }}>
-                                    {{$location->location_name}}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <x-input-error :messages="$errors->get('address')" class="mt-2"/>
-                </div>
 
                 <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
 
