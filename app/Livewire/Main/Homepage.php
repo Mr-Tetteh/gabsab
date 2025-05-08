@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Main;
 
-use App\Models\BundlePlans;
+use App\Models\DailyBundle;
 use App\Models\Data;
 use Carbon\Carbon;
 use Exception;
@@ -59,7 +59,7 @@ class Homepage extends Component
 
     public function render()
     {
-        $datas = BundlePlans::all();
+        $datas = DailyBundle::all();
         return view('livewire.main.homepage', compact('datas') );
     }
 }

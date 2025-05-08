@@ -11,17 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('contract_froms', function (Blueprint $table) {
+        Schema::create('weekly_bundles', function (Blueprint $table) {
             $table->id();
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->string('email');
-            $table->string('phone');
-            $table->string('location');
-            $table->string('ghana_post_gps');
-            $table->string('contract_type');
-            $table->boolean('status')->default(false);
-            $table->string('additional_info')->nullable();
+            $table->string('name')->nullable();
+            $table->integer('price');
+            $table->string('quantity');
+            $table->string('adv_1')->nullable();
+            $table->string('adv_2')->nullable();
+            $table->string('adv_3')->nullable();
+            $table->string('adv_4')->nullable();
+            $table->string('adv_5')->nullable();
             $table->timestamps();
         });
     }

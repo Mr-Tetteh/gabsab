@@ -2,8 +2,8 @@
 
 namespace App\Livewire\User;
 
-use App\Models\BundlePlans;
-use App\Models\ContractFroms;
+use App\Models\DailyBundle;
+use App\Models\WeeklyBundle;
 use App\Models\HomeServiceData;
 use App\Models\Locations;
 use Livewire\Attributes\Layout;
@@ -71,7 +71,7 @@ protected $messages = [
     public function create()
     {
         $this->validate();
-        ContractFroms::create([
+        WeeklyBundle::create([
             'first_name' => $this->first_name,
             'last_name' => $this->last_name,
             'email' => $this->email,
@@ -87,7 +87,7 @@ protected $messages = [
     }
     public function render()
     {
-        $datas = BundlePlans::all();
+        $datas = DailyBundle::all();
         $datum  =  HomeServiceData::all();
         $maps = Locations::all();
         $leaders = \App\Models\Leaders::all();
