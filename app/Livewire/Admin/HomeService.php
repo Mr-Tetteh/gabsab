@@ -18,11 +18,6 @@ class HomeService extends Component
     public $advantage_3;
     public $advantage_4;
     public $advantage_5;
-    public $advantage_6;
-    public $advantage_7;
-    public $advantage_8;
-    public $advantage_9;
-    public $advantage_10;
     public $isEdit;
     public $unit_id;
 
@@ -42,11 +37,7 @@ class HomeService extends Component
         $this->advantage_3 = '';
         $this->advantage_4 = '';
         $this->advantage_5 = '';
-        $this->advantage_6 = '';
-        $this->advantage_7 = '';
-        $this->advantage_8 = '';
-        $this->advantage_9 = '';
-        $this->advantage_10 = '';
+
     }
 
     public function create()
@@ -60,11 +51,7 @@ class HomeService extends Component
             'advantage_3' => $this->advantage_3,
             'advantage_4' => $this->advantage_4,
             'advantage_5' => $this->advantage_5,
-            'advantage_6' => $this->advantage_6,
-            'advantage_7' => $this->advantage_7,
-            'advantage_8' => $this->advantage_8,
-            'advantage_9' => $this->advantage_9,
-            'advantage_10' => $this->advantage_10,
+
 
         ]);
         $this->restForm();
@@ -83,11 +70,6 @@ class HomeService extends Component
         $this->advantage_3 = $bundle->advantage_3;
         $this->advantage_4 = $bundle->advantage_4;
         $this->advantage_5 = $bundle->advantage_5;
-        $this->advantage_6 = $bundle->advantage_6;
-        $this->advantage_7 = $bundle->advantage_7;
-        $this->advantage_8 = $bundle->advantage_8;
-        $this->advantage_9 = $bundle->advantage_9;
-        $this->advantage_10 = $bundle->advantage_10;
         $this->isEdit = true;
     }
 
@@ -104,11 +86,6 @@ class HomeService extends Component
             'advantage_3' => $this->advantage_3,
             'advantage_4' => $this->advantage_4,
             'advantage_5' => $this->advantage_5,
-            'advantage_6' => $this->advantage_6,
-            'advantage_7' => $this->advantage_7,
-            'advantage_8' => $this->advantage_8,
-            'advantage_9' => $this->advantage_9,
-            'advantage_10' => $this->advantage_10,
         ]);
         $this->restForm();
         session()->flash('message', 'Bundle plan successfully updated.');
@@ -122,6 +99,6 @@ class HomeService extends Component
     public function render()
     {
         $datas = HomeServiceData::latest()->paginate(10);
-        return view('livewire.admin.home-service', compact('datas'));
+        return view('livewire.admin.weekly_bundles', compact('datas'));
     }
 }

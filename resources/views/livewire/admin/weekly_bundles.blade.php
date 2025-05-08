@@ -13,7 +13,7 @@
                     <form class="bg-white shadow-2xl rounded-xl overflow-hidden" wire:submit="{{$isEdit? 'update': 'create'}}" >
                         <!-- Gradient Header -->
                         <div class="bg-gradient-to-r from-blue-600 to-blue-800 p-6">
-                            <h2 class="text-3xl font-bold text-white text-center">Bundle Prices</h2>
+                            <h2 class="text-3xl font-bold text-white text-center">Weekly Bundle Prices </h2>
                         </div>
 
                         <!-- Form Content -->
@@ -54,23 +54,6 @@
                                 @enderror
                             </div>
 
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-2">
-                                    Number of devices <span class="text-red-500">*</span>
-                                </label>
-                                <input wire:model="devices"
-                                       type="number"
-                                       placeholder="Enter Number of devices that can be connected"
-                                       class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
-                                >
-
-                                @error('devices')
-                                <div class="text-red-600">
-
-                                    {{$message}}
-                                </div>
-                                @enderror
-                            </div>
 
                             <!-- Amount -->
                             <div>
@@ -90,18 +73,18 @@
                                 </div>
                                 @enderror
                             </div>
-                            @for ($i = 1; $i <= 15; $i++)
+                            @for ($i = 1; $i <= 5; $i++)
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-2">
                                         Advantage {{ $i }}
                                     </label>
                                     <input
-                                        wire:model="adv_{{ $i }}"
+                                        wire:model="advantage_{{ $i }}"
                                         type="text"
                                         placeholder="Enter Advantage {{ $i }}"
                                         class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
                                     >
-                                    @error('adv_{{ $i }}')
+                                    @error('advantage_{{ $i }}')
                                     <div class="text-red-600">
                                         {{ $message }}
                                     </div>
@@ -115,7 +98,7 @@
                                 type="submit"
                                 class="w-full py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-300 shadow-lg"
                             >
-                                {{$isEdit ? 'Set Bundle Plan' : 'Update Bundle Plan' }}
+                                {{$isEdit ? 'Update Bundle Plan' : 'Set Bundle Plan' }}
                             </button>
                         </div>
                     </form>
@@ -124,7 +107,7 @@
                 <div class="lg:w-7/12">
                     <div class="lg:col-span-2 w-full">
                         <div class="bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-xl font-semibold text-gray-800 mb-6">Previous Purchased Data </h3>
+                            <h3 class="text-xl font-semibold text-gray-800 mb-6">Set Data Prices </h3>
                             <div class="overflow-x-auto">
                                 <table class="w-full">
                                     <thead class="bg-gray-50">
@@ -137,9 +120,6 @@
                                         </th>
                                         <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Quantity
-                                        </th>
-                                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Devices
                                         </th>
 
                                         <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -159,41 +139,7 @@
                                         <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Adv.5
                                         </th>
-                                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Adv.6
 
-                                        </th>
-                                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Adv.7
-                                        </th>
-                                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Adv.8
-
-                                        </th>
-                                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Adv.9
-                                        </th>
-                                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Adv.10
-
-                                        </th>
-                                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Adv.11
-                                        </th>
-                                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Adv.12
-
-                                        </th>
-                                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Adv.13
-                                        </th>
-                                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Adv.14
-
-                                        </th>
-                                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Adv.15
-                                        </th>
                                         <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Date
                                         </th>
@@ -220,62 +166,33 @@
                                                 <td class="px-4 py-4 whitespace-nowrap">
                                                     {{$data->quantity}}
                                                 </td>
-                                                <td class="px-4 py-4 whitespace-nowrap">
-                                                    {{$data->devices}}
-                                                </td>
-                                                <td class="px-4 py-4 whitespace-nowrap">
-                                                    {{$data->adv_1}}
-                                                </td>
-                                                <td class="px-4 py-4 whitespace-nowrap">
-                                                    {{$data->adv_2}}
-                                                </td>
 
                                                 <td class="px-4 py-4 whitespace-nowrap">
-                                                    {{$data->adv_3}}
+                                                    {{$data->advantage_1}}
+                                                </td>
+                                                <td class="px-4 py-4 whitespace-nowrap">
+                                                    {{$data->advantage_2}}
                                                 </td>
 
-                                                <td class="px-4 py-4 whitespace-nowrap">
-                                                    {{$data->adv_4}}
-                                                </td>
-                                                <td class="px-4 py-4 whitespace-nowrap">
-                                                    {{$data->adv_5}}
+                                                <td class="px-4 py-4 whitespace-nowrap" >
+                                                    {{$data->advantage_3}}
                                                 </td>
 
-                                                <td class="px-4 py-4 whitespace-nowrap">
-                                                    {{$data->adv_6}}
-                                                </td>
-                                                <td class="px-4 py-4 whitespace-nowrap">
-                                                    {{$data->adv_7}}
-                                                </td>
+
 
                                                 <td class="px-4 py-4 whitespace-nowrap">
-                                                    {{$data->adv_8}}
+                                                    {{$data->advantage_4}}
                                                 </td>
 
-                                                <td class="px-4 py-4 whitespace-nowrap">
-                                                    {{$data->adv_9}}
-                                                </td>
-                                                <td class="px-4 py-4 whitespace-nowrap">
-                                                    {{$data->adv_10}}
-                                                </td>
 
                                                 <td class="px-4 py-4 whitespace-nowrap">
-                                                    {{$data->adv_12}}
-                                                </td>
-                                                <td class="px-4 py-4 whitespace-nowrap">
-                                                    {{$data->adv_12}}
+                                                    {{$data->advantage_5}}
                                                 </td>
 
-                                                <td class="px-4 py-4 whitespace-nowrap">
-                                                    {{$data->adv_13}}
-                                                </td>
 
-                                                <td class="px-4 py-4 whitespace-nowrap">
-                                                    {{$data->adv_14}}
-                                                </td>
-                                                <td class="px-4 py-4 whitespace-nowrap">
-                                                    {{$data->adv_15}}
-                                                </td>
+
+
+
                                                 <td class="px-4 py-4 whitespace-nowrap">
                                                     {{$data->created_at->format('jS F, Y') }}
                                                 </td>
