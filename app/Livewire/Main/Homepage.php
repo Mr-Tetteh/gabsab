@@ -4,6 +4,8 @@ namespace App\Livewire\Main;
 
 use App\Models\DailyBundle;
 use App\Models\Data;
+use App\Models\HomeServiceData;
+use App\Models\MonthlyBundle;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Support\Facades\Auth;
@@ -15,16 +17,63 @@ use Throwable;
 class Homepage extends Component
 {
     #[Layout('layout.user.partials.website-base-user')]
-
-
     public $refrence;
     public $package;
+    public $duration;
     public $number;
     public $user_id;
     public $message;
 
+    public $currentStep = 1;
+
+    public $modal = false;
+
+    public $firstname;
+    public $lastname;
+    public $email;
+    public $phone;
+    public $username;
+
+    public function toggleModal()
+    {
+        $this->modal = true;
+    }
+
+    public function closeModal()
+    {
+        $this->modal = false;
+    }
+    public function nextStep()
+    {
+        $this->validateStep();
+        $this->currentStep++;
+    }
+
+    public function validateStep()
+    {
+        if ($this->currentStep == 1) {
+            $this->validate([
+                'duration' => 'required',
+            ]);
+        }elseif ($this->currentStep == 2) {
+            $this->validate([
+                'number' => 'required|numeric|digits:10',
+            ]);
+        }elseif ($this->currentStep == 3) {
+            $this->validate([
+                'package' => 'required',
+            ]);
+        }
+
+    }
+    public function previousStep()
+    {
+        $this->currentStep--;
+
+    }
 
     protected $rules = [
+        'duration' => 'required',
         'package' => 'required',
         'number' => 'required|numeric|digits:10',
     ];
@@ -32,34 +81,39 @@ class Homepage extends Component
     public function resetForm()
     {
         $this->package = null;
+        $this->duration = null;
         $this->number = null;
         $this->amount = null;
         $this->user_id = null;
 
 
-
     }
+
     public function create()
     {
         $this->validate();
         $Voucher = random_int(00000000, 9999999999);
 
         Data::create([
+            'duration' => $this->duration,
             'package' => $this->package,
-            'number' => '233'.substr($this->number, -9),
+            'number' => '233' . substr($this->number, -9),
             'amount' => $this->package,
             'user_id' => '0',
         ]);
-        \sendWithSMSONLINEGH('233'.substr($this->number, -9),
-            'Dear Customer your Data your Purchased successfully Your Voucher pin is '.$Voucher.' Happy browsing.');
+        sendWithSMSONLINEGH('233' . substr($this->number, -9),
+            'Dear Customer your ' . $this->duration .  ' Data has been Purchased successfully!! Your Voucher pin is ' . $Voucher . ' Happy browsing.');
         session()->flash('message', 'Data Purchased successfully. You will receive an SMS soon with your Voucher Pin');
         $this->resetForm();
+         $this->redirect('/');
 
     }
 
     public function render()
     {
         $datas = DailyBundle::all();
-        return view('livewire.main.homepage', compact('datas') );
+        $weekly = HomeServiceData::all();
+        $monthly = MonthlyBundle::all();
+        return view('livewire.main.homepage', compact('datas', 'weekly', 'monthly'));
     }
 }
