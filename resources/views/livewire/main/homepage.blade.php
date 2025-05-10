@@ -91,6 +91,21 @@
                                         @error('duration')
                                         <p class="text-red-600 text-sm">{{$message}}</p>
                                         @enderror
+
+                                        <label class="block text-sm font-medium text-gray-700">
+                                            Select Agent <span class="text-red-500">*</span>
+                                        </label>
+                                        <select wire:model="agent"
+                                                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition-all">
+                                            <option value="">Select Agent</option>
+                                            @foreach($agents as $agent)
+                                                <option value="No Agent">No Agent</option>
+                                            <option value="{{$agent->username}}">{{$agent->username}}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('agent')
+                                        <p class="text-red-600 text-sm">{{$message}}</p>
+                                        @enderror
                                         <button type="button"
                                                 wire:click="nextStep"
                                                 class="w-full py-4 bg-gradient-to-r from-green-400 to-yellow-400 text-gray-900 font-bold rounded-lg hover:shadow-lg transition-all duration-300">
@@ -190,114 +205,189 @@
 
 
                     @if($modal)
-                    <div  class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-                        <div class="fixed inset-0 bg-gray-500/75 transition-opacity" aria-hidden="true"></div>
+                        <div class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+                            <!-- Backdrop with improved opacity and blur effect -->
+                            <div class="fixed inset-0 bg-gray-900/75 backdrop-blur-sm transition-opacity" aria-hidden="true"></div>
 
-                        <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
-                            <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                            <!-- Modal positioning -->
+                            <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
+                                <!-- Modal container with improved animation -->
+                                <div class="relative transform overflow-hidden rounded-2xl bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-lg animate-fadeIn">
+                                    <!-- Close button at the top right -->
+                                    <button wire:click="closeModal" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 focus:outline-none z-10">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                        </svg>
+                                    </button>
 
-                                <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
-                                    <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                                        <div class="sm:flex sm:items-start">
+                                    <!-- Form container -->
+                                    <form class="bg-white rounded-2xl overflow-hidden" wire:submit="createAgent">
 
-                                                <form class="bg-white rounded-2xl overflow-hidden shadow-xl" wire:submit="create">
-                                                    <div class="bg-gradient-to-r from-green-400 to-yellow-400 p-6">
-                                                        <h2 class="text-2xl font-bold text-gray-900 text-center">Become An Agent</h2>
-                                                    </div>
-                                                    <div class="p-8 space-y-6">
-                                                        <div class="space-y-2">
-                                                            <label class="block text-sm font-medium text-gray-700">
-                                                                Phone Number <span class="text-red-500">*</span>
-                                                            </label>
-                                                            <input wire:model="number"
-                                                                   type="text"
-                                                                   placeholder="Enter your first name"
-                                                                   class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition-all"
-                                                            >
-                                                            @error('number')
-                                                            <p class="text-red-600 text-sm">{{$message}}</p>
-                                                            @enderror
-
-                                                        </div>
-
-
-                                                        <div class="space-y-2">
-                                                            <label class="block text-sm font-medium text-gray-700">
-                                                                Last Name <span class="text-red-500">*</span>
-                                                            </label>
-                                                            <input wire:model="number"
-                                                                   type="text"
-                                                                   placeholder="Enter your last name"
-                                                                   class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition-all"
-                                                            >
-                                                            @error('number')
-                                                            <p class="text-red-600 text-sm">{{$message}}</p>
-                                                            @enderror
-
-                                                        </div>
-
-
-                                                        <div class="space-y-2">
-                                                            <label class="block text-sm font-medium text-gray-700">
-                                                                Phone Number <span class="text-red-500">*</span>
-                                                            </label>
-                                                            <input wire:model="number"
-                                                                   type="text"
-                                                                   placeholder="Enter your number"
-                                                                   class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition-all"
-                                                            >
-                                                            @error('number')
-                                                            <p class="text-red-600 text-sm">{{$message}}</p>
-                                                            @enderror
-
-                                                        </div>
-
-
-
-                                                        <div class="space-y-2">
-                                                            <label class="block text-sm font-medium text-gray-700">
-                                                                Email <span class="text-red-500">*</span>
-                                                            </label>
-                                                            <input wire:model="number"
-                                                                   type="email"
-                                                                   placeholder="Enter your email"
-                                                                   class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition-all"
-                                                            >
-                                                            @error('number')
-                                                            <p class="text-red-600 text-sm">{{$message}}</p>
-                                                            @enderror
-
-                                                        </div>
-
-                                                        <div class="space-y-2">
-                                                            <label class="block text-sm font-medium text-gray-700">
-                                                                Username <span class="text-red-500">*</span>
-                                                            </label>
-                                                            <input wire:model="number"
-                                                                   type="text"
-                                                                   placeholder="Enter your Username"
-                                                                   class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition-all"
-                                                            >
-                                                            @error('number')
-                                                            <p class="text-red-600 text-sm">{{$message}}</p>
-                                                            @enderror
-
-                                                        </div>
-
-                                                    </div>
-                                                </form>
+                                        @if (session()->has('message'))
+                                            <div
+                                                class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg shadow-md mb-8">
+                                                {{ session('message') }}
+                                            </div>
+                                        @endif
+                                        <!-- Header with gradient and icon -->
+                                        <div class="relative bg-gradient-to-r from-green-400 to-yellow-400 p-6">
+                                            <div class="flex items-center justify-center mb-2">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-white bg-green-500/20 p-2 rounded-full" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                                </svg>
+                                            </div>
+                                            <h2 class="text-2xl font-bold text-gray-900 text-center">Become An Agent</h2>
+                                            <p class="text-gray-800/80 text-center mt-1">Join our network of successful agents</p>
                                         </div>
-                                    </div>
-                                    <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                                        <button type="button" class="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-red-500 sm:ml-3 sm:w-auto">Deactivate</button>
-                                        <button type="button" class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-xs ring-1 ring-gray-300 ring-inset hover:bg-gray-50 sm:mt-0 sm:w-auto">Cancel</button>
-                                    </div>
+
+                                        <!-- Form fields with improved spacing and visual feedback -->
+                                        <div class="p-8 space-y-5">
+                                            <!-- Progress indicator -->
+                                            <div class="flex justify-center mb-2">
+                                                <div class="h-1 w-full bg-gray-200 rounded-full overflow-hidden">
+                                                    <div class="h-full bg-gradient-to-r from-green-400 to-yellow-400 w-1/3 rounded-full transition-all duration-300"></div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Two-column layout for first name and last name -->
+                                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                                <div class="space-y-1">
+                                                    <label class="block text-sm font-medium text-gray-700">
+                                                        First Name <span class="text-red-500">*</span>
+                                                    </label>
+                                                    <div class="relative">
+                                                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                                            </svg>
+                                                        </div>
+                                                        <input wire:model="firstname"
+                                                               type="text"
+                                                               placeholder="First name"
+                                                               class="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition-all"
+                                                        >
+                                                    </div>
+                                                    @error('firstname')
+                                                    <p class="text-red-600 text-sm mt-1">{{$message}}</p>
+                                                    @enderror
+                                                </div>
+
+                                                <div class="space-y-1">
+                                                    <label class="block text-sm font-medium text-gray-700">
+                                                        Last Name <span class="text-red-500">*</span>
+                                                    </label>
+                                                    <div class="relative">
+                                                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                                            </svg>
+                                                        </div>
+                                                        <input wire:model="lastname"
+                                                               type="text"
+                                                               placeholder="Last name"
+                                                               class="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition-all"
+                                                        >
+                                                    </div>
+                                                    @error('lastname')
+                                                    <p class="text-red-600 text-sm mt-1">{{$message}}</p>
+                                                    @enderror
+                                                </div>
+                                            </div>
+
+                                            <div class="space-y-1">
+                                                <label class="block text-sm font-medium text-gray-700">
+                                                    Phone Number <span class="text-red-500">*</span>
+                                                </label>
+                                                <div class="relative">
+                                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                                        </svg>
+                                                    </div>
+                                                    <input wire:model="phone"
+                                                           type="tel"
+                                                           placeholder="e.g., 024 123 4567"
+                                                           class="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition-all"
+                                                    >
+                                                </div>
+                                                @error('phone')
+                                                <p class="text-red-600 text-sm mt-1">{{$message}}</p>
+                                                @enderror
+                                            </div>
+
+                                            <div class="space-y-1">
+                                                <label class="block text-sm font-medium text-gray-700">
+                                                    Email <span class="text-red-500">*</span>
+                                                </label>
+                                                <div class="relative">
+                                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                                        </svg>
+                                                    </div>
+                                                    <input wire:model="email"
+                                                           type="email"
+                                                           placeholder="your.email@example.com"
+                                                           class="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition-all"
+                                                    >
+                                                </div>
+                                                @error('email')
+                                                <p class="text-red-600 text-sm mt-1">{{$message}}</p>
+                                                @enderror
+                                            </div>
+
+                                            <div class="space-y-1">
+                                                <label class="block text-sm font-medium text-gray-700">
+                                                    Username <span class="text-red-500">*</span>
+                                                </label>
+                                                <div class="relative">
+                                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
+                                                        </svg>
+                                                    </div>
+                                                    <input wire:model="username"
+                                                           type="text"
+                                                           placeholder="Choose a username"
+                                                           class="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition-all"
+                                                    >
+                                                </div>
+                                                @error('username')
+                                                <p class="text-red-600 text-sm mt-1">{{$message}}</p>
+                                                @enderror
+                                            </div>
+
+                                            <!-- Terms and conditions checkbox -->
+                                            <div class="flex items-start mt-4">
+                                                <div class="flex items-center h-5">
+                                                    <input wire:model="agreeTerms" id="terms" type="checkbox" class="h-4 w-4 text-green-500 border-gray-300 rounded focus:ring-green-400">
+                                                </div>
+                                                <div class="ml-3 text-sm">
+                                                    <label for="terms" class="font-medium text-gray-700">I agree to the <a href="#" class="text-green-500 hover:text-green-600">Terms and Conditions</a></label>
+                                                    @error('agreeTerms')
+                                                    <p class="text-red-600 text-sm mt-1">{{$message}}</p>
+                                                    @enderror
+                                                </div>
+                                            </div>
+
+                                            <!-- Action buttons -->
+                                            <div class="flex flex-col sm:flex-row gap-3 mt-6">
+                                                <button wire:click="closeModal" type="button" class="w-full sm:w-1/3 py-3 bg-gray-100 text-gray-700 font-medium rounded-lg hover:bg-gray-200 transition-all duration-300 flex justify-center items-center">
+                                                    Cancel
+                                                </button>
+                                                <button type="submit" class="w-full sm:w-2/3 py-3 bg-gradient-to-r from-green-400 to-yellow-400 text-gray-900 font-bold rounded-lg hover:shadow-lg transition-all duration-300 flex justify-center items-center group">
+                                                    Register
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
-                    </div>
                     @endif
-
                 </div>
             </div>
         </div>
