@@ -8,7 +8,6 @@ class Data extends Model
 {
     protected $fillable = ['package', 'duration', 'number', 'amount', 'quantity', 'reference', 'user_id', 'agent'];
 
-
     protected static function booted()
     {
         static::creating(function ($reference) {

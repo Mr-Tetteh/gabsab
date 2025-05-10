@@ -9,7 +9,7 @@
                             <table class="w-full">
                                 <thead class="bg-gray-50">
                                 <tr>
-                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Package</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Duration</th>
                                     <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Data Volume</th>
                                     <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Price</th>
                                     <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Reference</th>
@@ -35,34 +35,56 @@
                                         @foreach($packages as $package)
                                             <tr class="hover:bg-gray-50">
                                                 <td class="px-4 py-4 whitespace-nowrap">
-                                                    @switch($package)
-                                                        @case(1)
-                                                            One Ghana for your pocket
-                                                            @break
-                                                        @case(2)
-                                                            Ashanti Two
-                                                            @break
-                                                        @case(5)
-                                                            Blue up
-                                                            @break
-                                                        @default
-                                                            Unknown
-                                                    @endswitch
+                                                    {{$data->duration}}
                                                 </td>
                                                 <td class="px-4 py-4 whitespace-nowrap">
+                                                    @if($data->duration == "Daily")
                                                     @switch($package)
-                                                        @case(1)
+                                                        @case(2)
                                                             1 GB
                                                             @break
-                                                        @case(2)
+                                                        @case(3)
                                                             2 GB
                                                             @break
                                                         @case(5)
-                                                            5 GB
+                                                            3 GB
                                                             @break
                                                         @default
                                                             N/A
                                                     @endswitch
+                                                    @endif
+
+                                                        @if($data->duration == "Weekly")
+                                                            @switch($package)
+                                                                @case(10)
+                                                                    2 GB
+                                                                    @break
+                                                                @case(15)
+                                                                    3 GB
+                                                                    @break
+                                                                @case(18)
+                                                                    6 GB
+                                                                    @break
+                                                                @default
+                                                                    N/A
+                                                            @endswitch
+                                                        @endif
+
+                                                        @if($data->duration == "Monthly")
+                                                            @switch($package)
+                                                                @case(15)
+                                                                    5 GB
+                                                                    @break
+                                                                @case(20)
+                                                                    10 GB
+                                                                    @break
+                                                                @case(30)
+                                                                    15 GB
+                                                                    @break
+                                                                @default
+                                                                    N/A
+                                                            @endswitch
+                                                        @endif
                                                 </td>
                                                 <td class="px-4 py-4 whitespace-nowrap">GHC {{ number_format($data->amount, 2) }}</td>
                                                 <td class="px-4 py-4 whitespace-nowrap">{{ $data->reference ?? 'N/A' }}</td>

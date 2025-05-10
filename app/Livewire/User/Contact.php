@@ -10,8 +10,11 @@ class Contact extends Component
 {
     #[Layout('layout.user.partials.website-base-user')]
     public $name;
+
     public $email;
+
     public $phone;
+
     public $message;
 
     protected $rules = [

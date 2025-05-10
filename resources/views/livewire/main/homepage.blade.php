@@ -98,8 +98,9 @@
                                         <select wire:model="agent"
                                                 class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition-all">
                                             <option value="">Select Agent</option>
-                                            @foreach($agents as $agent)
-                                                <option value="No Agent">No Agent</option>
+                                            <option value="No Agent">No Agent</option>
+
+                                        @foreach($agents as $agent)
                                             <option value="{{$agent->username}}">{{$agent->username}}</option>
                                             @endforeach
                                         </select>
@@ -128,64 +129,52 @@
                                         @enderror
                                         <p class="text-sm text-gray-500">You'll receive the voucher PIN via SMS for
                                             payment</p>
-                                    </div>
-                                    <div class="grid grid-cols-2 gap-4">
-                                        <button type="button"
-                                                wire:click="previousStep"
-                                                class="w-full py-4 bg-gradient-to-r from-green-400 to-yellow-400 text-gray-900 font-bold rounded-lg hover:shadow-lg transition-all duration-300">
-                                            Previous
-                                        </button>
-                                        <button type="button"
-                                                wire:click="nextStep"
-                                                class="w-full py-4 bg-gradient-to-r from-green-400 to-yellow-400 text-gray-900 font-bold rounded-lg hover:shadow-lg transition-all duration-300">
-                                            Next
-                                        </button>
-                                    </div>
-                                @endif
-                                @if($currentStep == 3)
-                                    <div class="space-y-2">
-                                        <label class="block text-sm font-medium text-gray-700">
-                                            Select Package <span class="text-red-500">*</span>
-                                        </label>
 
-                                        @if($duration == "Daily")
-                                            <select wire:model="package"
-                                                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition-all">
-                                                <option value="">Choose your package</option>
-                                                @foreach($datas as $data)
-                                                    <option value="{{$data->price}}">{{$data->quantity}}GB -
-                                                        GHC {{$data->price}}</option>
-                                                @endforeach
-                                            </select>
-                                        @elseif($duration == "Weekly")
-                                            <select wire:model="package"
-                                                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition-all">
-                                                <option value="">Choose your package</option>
-                                                @foreach($weekly as $data)
-                                                    <option value="{{$data->price}}">{{$data->quantity}}GB -
-                                                        GHC {{$data->price}}</option>
-                                                @endforeach
-                                            </select>
-                                        @elseif($duration == "Monthly")
-                                            <select wire:model="package"
-                                                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition-all">
-                                                <option value="">Choose your package</option>
-                                                @foreach($monthly as $data)
-                                                    <option value="{{$data->price}}">{{$data->quantity}}GB -
-                                                        GHC {{$data->price}}</option>
-                                                @endforeach
-                                            </select>
-                                        @else
-                                            <select wire:model="package"
-                                                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition-all"
-                                                    disabled>
-                                                <option value="">Please select a duration first</option>
-                                            </select>
-                                        @endif
+                                        <div class="space-y-2">
+                                            <label class="block text-sm font-medium text-gray-700">
+                                                Select Package <span class="text-red-500">*</span>
+                                            </label>
 
-                                        @error('package')
-                                        <p class="text-red-600 text-sm">{{$message}}</p>
-                                        @enderror
+                                            @if($duration == "Daily")
+                                                <select wire:model="package"
+                                                        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition-all">
+                                                    <option value="">Choose your package</option>
+                                                    @foreach($datas as $data)
+                                                        <option value="{{$data->price}}">{{$data->quantity}}GB -
+                                                            GHC {{$data->price}}</option>
+                                                    @endforeach
+                                                </select>
+                                            @elseif($duration == "Weekly")
+                                                <select wire:model="package"
+                                                        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition-all">
+                                                    <option value="">Choose your package</option>
+                                                    @foreach($weekly as $data)
+                                                        <option value="{{$data->price}}">{{$data->quantity}}GB -
+                                                            GHC {{$data->price}}</option>
+                                                    @endforeach
+                                                </select>
+                                            @elseif($duration == "Monthly")
+                                                <select wire:model="package"
+                                                        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition-all">
+                                                    <option value="">Choose your package</option>
+                                                    @foreach($monthly as $data)
+                                                        <option value="{{$data->price}}">{{$data->quantity}}GB -
+                                                            GHC {{$data->price}}</option>
+                                                    @endforeach
+                                                </select>
+                                            @else
+                                                <select wire:model="package"
+                                                        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition-all"
+                                                        disabled>
+                                                    <option value="">Please select a duration first</option>
+                                                </select>
+                                            @endif
+
+                                            @error('package')
+                                            <p class="text-red-600 text-sm">{{$message}}</p>
+                                            @enderror
+                                        </div>
+
                                     </div>
                                     <div class="grid grid-cols-2 gap-4">
                                         <button type="button"

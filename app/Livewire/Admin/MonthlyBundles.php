@@ -3,24 +3,30 @@
 namespace App\Livewire\Admin;
 
 use App\Models\MonthlyBundle;
-use Illuminate\Http\Request;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 
 class MonthlyBundles extends Component
 {
     #[Layout('layout.admin.partials.website-base-admin')]
-
     public $name;
+
     public $price;
+
     public $quantity;
+
     public $adv_1;
+
     public $adv_2;
+
     public $adv_3;
+
     public $adv_4;
+
     public $adv_5;
 
     public $isEdit;
+
     public $unit_id;
 
     protected $rules = [
@@ -46,19 +52,19 @@ class MonthlyBundles extends Component
 
     public function create()
     {
-       MonthlyBundle::create([
-           'name' => $this->name,
-           'price' => $this->price,
-           'quantity' => $this->quantity,
-           'adv_1' => $this->adv_1,
-           'adv_2' => $this->adv_2,
-           'adv_3' => $this->adv_3,
-           'adv_4' => $this->adv_4,
-           'adv_5' => $this->adv_5,
-       ]);
+        MonthlyBundle::create([
+            'name' => $this->name,
+            'price' => $this->price,
+            'quantity' => $this->quantity,
+            'adv_1' => $this->adv_1,
+            'adv_2' => $this->adv_2,
+            'adv_3' => $this->adv_3,
+            'adv_4' => $this->adv_4,
+            'adv_5' => $this->adv_5,
+        ]);
 
-       $this->restForm();
-       session()->flash('message', 'Bundle plan successfully created.');
+        $this->restForm();
+        session()->flash('message', 'Bundle plan successfully created.');
 
     }
 
@@ -75,7 +81,6 @@ class MonthlyBundles extends Component
         $this->adv_4 = $data->adv_4;
         $this->adv_5 = $data->adv_5;
         $this->isEdit = true;
-
 
     }
 
@@ -100,9 +105,11 @@ class MonthlyBundles extends Component
         MonthlyBundle::findOrFail($id)->delete();
         session()->flash('message', 'Bundle plan successfully deleted.');
     }
+
     public function render()
     {
         $datas = \App\Models\MonthlyBundle::latest()->paginate(10);
+
         return view('livewire.admin.monthly-bundles', compact('datas'));
     }
 }

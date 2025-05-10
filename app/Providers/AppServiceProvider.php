@@ -2,10 +2,9 @@
 
 namespace App\Providers;
 
-use Illuminate\Pagination\Paginator;
+use App\Livewire\User\Map;
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
-use App\Livewire\User\Map;
 
 class AppServiceProvider extends ServiceProvider
 {

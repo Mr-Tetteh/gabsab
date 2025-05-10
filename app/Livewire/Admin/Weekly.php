@@ -2,25 +2,34 @@
 
 namespace App\Livewire\Admin;
 
-use App\Models\WeeklyBundle;
 use App\Models\HomeServiceData;
+use App\Models\WeeklyBundle;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 
 class Weekly extends Component
 {
     #[Layout('layout.admin.partials.website-base-admin')]
-
     public $modal = false;
+
     public $name;
+
     public $price;
+
     public $quantity;
+
     public $adv_1;
+
     public $adv_2;
+
     public $adv_3;
+
     public $adv_4;
+
     public $adv_5;
+
     public $isEdit = false;
+
     public $unit_id;
 
     protected $listeners = ['executeFunctions'];
@@ -40,6 +49,7 @@ class Weekly extends Component
     {
         $this->modal = false;
     }
+
     public function restForm()
     {
         $this->name = '';
@@ -69,9 +79,10 @@ class Weekly extends Component
         session()->flash('message', 'Bundle plan successfully created.');
 
     }
+
     public function edit($id)
     {
-       $bundle =  WeeklyBundle::findOrFail($id);
+        $bundle = WeeklyBundle::findOrFail($id);
         $this->unit_id = $bundle->id;
         $this->name = $bundle->name;
         $this->price = $bundle->price;
@@ -92,10 +103,12 @@ class Weekly extends Component
         $this->closeModal();
 
     }
+
     public function render()
     {
         $datas = WeeklyBundle::latest()->paginate(10);
         $datum = HomeServiceData::all();
+
         return view('livewire.admin.weekly_bundles', compact('datas', 'datum'));
     }
 }

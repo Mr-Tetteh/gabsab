@@ -9,8 +9,11 @@ class Faqs extends Component
 {
     #[Layout('layout.admin.partials.website-base-admin')]
     public $name;
+
     public $email;
+
     public $phone;
+
     public $message;
 
     public $status;
@@ -19,7 +22,7 @@ class Faqs extends Component
     {
         $faq = \App\Models\Faqs::find($faqId);
         if ($faqId) {
-            $faq->status = !$faq->status;
+            $faq->status = ! $faq->status;
             $faq->save();
         }
         session()->flash('message', 'Faq Status Changed Successfully');
@@ -29,6 +32,7 @@ class Faqs extends Component
     public function render()
     {
         $datas = \App\Models\Faqs::latest()->paginate(10);
+
         return view('livewire.admin.faqs', compact('datas'));
     }
 }
