@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Data extends Model
 {
-    protected $fillable = ['package', 'number', 'amount', 'quantity', 'reference', 'user_id'];
+    protected $fillable = ['package', 'duration', 'number', 'amount', 'quantity', 'reference', 'user_id'];
 
 
     protected static function booted()

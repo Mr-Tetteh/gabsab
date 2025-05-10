@@ -3,6 +3,7 @@
 namespace App\Livewire\User;
 
 use App\Models\DailyBundle;
+use App\Models\MonthlyBundle;
 use App\Models\WeeklyBundle;
 use App\Models\HomeServiceData;
 use App\Models\Locations;
@@ -89,8 +90,9 @@ protected $messages = [
     {
         $datas = DailyBundle::all();
         $datum  =  HomeServiceData::all();
+        $datass = MonthlyBundle::all();
         $maps = Locations::all();
         $leaders = \App\Models\Leaders::all();
-        return view('livewire.user.homepage', compact('datas', 'datum', 'maps', 'leaders'));
+        return view('livewire.user.homepage', compact('datas', 'datum', 'maps', 'leaders', 'datass'));
     }
 }
