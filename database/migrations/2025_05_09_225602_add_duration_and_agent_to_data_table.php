@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('data', function (Blueprint $table) {
             $table->string('duration')->nullable();
-            $table->string('agent')->nullable();
+            $table->unsignedBigInteger('agentId')->nullable();
         });
     }
 
@@ -23,7 +23,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('data', function (Blueprint $table) {
-            $table->dropColumn(['duration', 'agent']);
+            $table->dropColumn(['duration', 'agentId']);
         });
     }
 };

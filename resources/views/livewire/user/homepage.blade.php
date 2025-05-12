@@ -250,7 +250,7 @@
 
                                 <div class="flex justify-center items-center space-x-2 mb-6">
                                     <span class="text-gray-500 text-lg">Quantity:</span>
-                                    <span class="text-2xl font-bold text-gray-400">{{ $data->quantity }}</span>
+                                    <span class="text-2xl font-bold text-gray-400">{{ $data->quantity }}GB</span>
                                 </div>
 
                                 <div class="space-y-3 mb-8">
@@ -261,7 +261,7 @@
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                   d="M5 13l4 4L19 7"></path>
                                         </svg>
-                                        <span>Quantity: <span class="font-bold text-gray-400">{{$data->quantity}}</span></span>
+                                        <span>Quantity: <span class="font-bold text-gray-400">{{$data->quantity}}GB</span></span>
                                     </div>
 
                                     @for($i = 1; $i <= 15; $i++)
@@ -333,7 +333,7 @@
 
                                 <div class="flex justify-center items-center space-x-2 mb-6">
                                     <span class="text-gray-500 text-lg">Quantity:</span>
-                                    <span class="text-2xl font-bold text-gray-400">{{ $data->quantity }}</span>
+                                    <span class="text-2xl font-bold text-gray-400">{{ $data->quantity }}GB</span>
                                 </div>
 
                                 <div class="space-y-3 mb-8">
@@ -345,7 +345,7 @@
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                   d="M5 13l4 4L19 7"></path>
                                         </svg>
-                                        <span>Quantity: <span class="font-bold text-gray-400">{{$data->quantity}}</span></span>
+                                        <span>Quantity: <span class="font-bold text-gray-400">{{$data->quantity}}GB</span></span>
                                     </div>
 
                                     @for($i = 1; $i <= 15; $i++)
@@ -418,7 +418,7 @@
 
                                 <div class="flex justify-center items-center space-x-2 mb-6">
                                     <span class="text-gray-500 text-lg">Quantity:</span>
-                                    <span class="text-2xl font-bold text-gray-400">{{ $data->quantity }}</span>
+                                    <span class="text-2xl font-bold text-gray-400">{{ $data->quantity }} GB</span>
                                 </div>
 
                                 <div class="space-y-3 mb-8">
@@ -430,7 +430,7 @@
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                   d="M5 13l4 4L19 7"></path>
                                         </svg>
-                                        <span>Quantity: <span class="font-bold text-gray-400">{{$data->quantity}}</span></span>
+                                        <span>Quantity: <span class="font-bold text-gray-400">{{$data->quantity}} GB</span></span>
                                     </div>
 
                                     @for($i = 1; $i <= 15; $i++)

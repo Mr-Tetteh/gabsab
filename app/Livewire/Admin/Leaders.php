@@ -12,15 +12,22 @@ class Leaders extends Component
     use WithFileUploads;
 
     #[Layout('layout.admin.partials.website-base-admin')]
-
     public $modal = false;
+
     public $edit = false;
+
     public $first_name;
+
     public $last_name;
+
     public $other_names;
+
     public $position;
+
     public $department;
+
     public $image;
+
     public $leader_id;
 
     protected $rules = [
@@ -29,7 +36,7 @@ class Leaders extends Component
         'other_names' => 'string',
         'position' => 'required|string',
         'department' => 'required',
-        'image' => 'required|file|mimes:jpeg,png,jpg,gif,svg,webp|max:5048'
+        'image' => 'required|file|mimes:jpeg,png,jpg,gif,svg,webp|max:5048',
 
     ];
 
@@ -52,15 +59,15 @@ class Leaders extends Component
 
     public function edit($id)
     {
-      $leader =  \App\Models\Leaders::findOrFail($id);
-      $this->leader_id = $leader->id;
-      $this->first_name = $leader->first_name;
-      $this->last_name = $leader->last_name;
-      $this->other_names = $leader->other_names;
-      $this->position = $leader->position;
-      $this->department = $leader->department;
-      $this->image = $leader->image;
-      $this->edit = true;
+        $leader = \App\Models\Leaders::findOrFail($id);
+        $this->leader_id = $leader->id;
+        $this->first_name = $leader->first_name;
+        $this->last_name = $leader->last_name;
+        $this->other_names = $leader->other_names;
+        $this->position = $leader->position;
+        $this->department = $leader->department;
+        $this->image = $leader->image;
+        $this->edit = true;
     }
 
     public function update()
@@ -85,13 +92,14 @@ class Leaders extends Component
             'other_names' => $this->other_names,
             'position' => $this->position,
             'department' => $this->department,
-            'image' => $filePath
+            'image' => $filePath,
 
         ]);
         session()->flash('message', 'Leader successfully updated.');
         $this->resetForm();
         $this->modal = false;
     }
+
     public function delete($id)
     {
         \App\Models\Leaders::findOrFail($id)->delete();
@@ -131,6 +139,7 @@ class Leaders extends Component
     public function render()
     {
         $datas = \App\Models\Leaders::latest()->paginate(10);
+
         return view('livewire.admin.leaders', compact('datas'));
     }
 }

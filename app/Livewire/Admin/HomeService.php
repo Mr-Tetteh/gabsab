@@ -9,16 +9,24 @@ use Livewire\Component;
 class HomeService extends Component
 {
     #[Layout('layout.admin.partials.website-base-admin')]
-
     public $name;
+
     public $price;
+
     public $quantity;
+
     public $advantage_1;
+
     public $advantage_2;
+
     public $advantage_3;
+
     public $advantage_4;
+
     public $advantage_5;
+
     public $isEdit;
+
     public $unit_id;
 
     protected $rules = [
@@ -52,12 +60,12 @@ class HomeService extends Component
             'advantage_4' => $this->advantage_4,
             'advantage_5' => $this->advantage_5,
 
-
         ]);
         $this->restForm();
         $this->restForm();
         session()->flash('message', 'Bundle plan successfully created.');
     }
+
     public function edit($id)
     {
         $bundle = HomeServiceData::findOrFail($id);
@@ -96,9 +104,11 @@ class HomeService extends Component
     {
         HomeServiceData::findOrFail($id)->delete();
     }
+
     public function render()
     {
         $datas = HomeServiceData::latest()->paginate(10);
+
         return view('livewire.admin.weekly_bundles', compact('datas'));
     }
 }

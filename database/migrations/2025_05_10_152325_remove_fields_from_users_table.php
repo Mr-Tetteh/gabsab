@@ -11,7 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::dropIfExists('agent');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('gender');
+            $table->dropColumn('date_of_birth');
+        });
     }
 
     /**
@@ -19,14 +22,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::create('agent', function (Blueprint $table) {
-            $table->id();
-            $table->string('firstname');
-            $table->string('lastname');
-            $table->string('phone');
-            $table->string('email');
-            $table->string('username')->unique();
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('gender');
+            $table->dropColumn('date_of_birth');
         });
     }
 };

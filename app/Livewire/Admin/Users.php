@@ -10,17 +10,26 @@ class Users extends Component
 {
     #[Layout('layout.admin.partials.website-base-admin')]
     public $first_name;
-    public $last_name;
-    public $email;
-    public $contact;
-    public $address;
-    public $role;
-    public $gender;
-    public $date_of_birth;
-    public $user_id;
-    public $modal;
-    public $isEdit = false;
 
+    public $last_name;
+
+    public $email;
+
+    public $contact;
+
+    public $address;
+
+    public $role;
+
+    public $gender;
+
+    public $date_of_birth;
+
+    public $user_id;
+
+    public $modal;
+
+    public $isEdit = false;
 
     public function resetForm()
     {
@@ -32,7 +41,6 @@ class Users extends Component
         $this->role = '';
         $this->gender = '';
         $this->date_of_birth = '';
-
 
     }
 
@@ -52,12 +60,12 @@ class Users extends Component
 
     protected $listeners = ['executeFunctions'];
 
-
     public function executeFunctions($id)
     {
         $this->edit($id);
         $this->toggleModal();
     }
+
     public function toggleModal()
     {
         $this->modal = true;
@@ -76,17 +84,18 @@ class Users extends Component
 
         $user = User::find($this->user_id);
         $user->update([
-           'role' => $this->role,
-       ]);
-       session()->flash('message', 'User Role Updated Successfully.');
-       $this->resetForm();
-       $this->isEdit = false;
-       $this->modal = false;
+            'role' => $this->role,
+        ]);
+        session()->flash('message', 'User Role Updated Successfully.');
+        $this->resetForm();
+        $this->isEdit = false;
+        $this->modal = false;
     }
 
     public function render()
     {
         $datas = User::latest()->paginate(10);
+
         return view('livewire.admin.users', compact('datas'));
     }
 }

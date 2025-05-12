@@ -99,42 +99,6 @@
                     </div>
                 </div>
                 <!-- Gender and Date of Birth -->
-                <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                    <!-- Gender -->
-                    <div>
-                        <x-input-label for="gender" :value="__('Gender')" class="font-medium"/>
-                        <div class="mt-1">
-                            <select
-                                id="gender"
-                                name="gender"
-                                class="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-200 dark:bg-gray-700 dark:text-gray-100"
-
-                            >
-                                <option value="">Select Gender</option>
-                                <option value="male" {{ old('gender') == 'male' ? 'selected' : '' }}>Male</option>
-                                <option value="female" {{ old('gender') == 'female' ? 'selected' : '' }}>Female</option>
-                            </select>
-                        </div>
-                        <x-input-error :messages="$errors->get('gender')" class="mt-2"/>
-                    </div>
-
-                    <!-- Date of Birth -->
-                    <div>
-                        <x-input-label for="date_of_birth" :value="__('Date of Birth')" class="font-medium"/>
-                        <div class="mt-1">
-                            <x-text-input
-                                id="date_of_birth"
-                                type="date"
-                                name="date_of_birth"
-                                :value="old('date_of_birth')"
-                                class="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-200 dark:bg-gray-700 dark:text-gray-100"
-                                max="{{ date('Y-m-d', strtotime('-18 years')) }}"
-
-                            />
-                        </div>
-                        <x-input-error :messages="$errors->get('date_of_birth')" class="mt-2"/>
-                    </div>
-                </div>
 
 
                 <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">

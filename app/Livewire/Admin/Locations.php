@@ -4,17 +4,20 @@ namespace App\Livewire\Admin;
 
 use Livewire\Attributes\Layout;
 use Livewire\Component;
-use phpDocumentor\Reflection\Location;
 
 class Locations extends Component
 {
     #[Layout('layout.admin.partials.website-base-admin')]
-
     public $modal = false;
+
     public $location_name;
+
     public $latitude;
+
     public $longitude;
+
     public $Edit = false;
+
     public $location_id;
 
     public function toggleModal()
@@ -54,7 +57,7 @@ class Locations extends Component
 
     public function executeFunctions($id)
     {
-        $this->modal=true;
+        $this->modal = true;
         $this->edit($id);
 
     }
@@ -62,11 +65,11 @@ class Locations extends Component
     public function edit($id)
     {
         $location = \App\Models\Locations::findOrFail($id);
-        $this->location_name=$location->location_name;
-        $this->latitude=$location->latitude;
-        $this->longitude=$location->longitude;
+        $this->location_name = $location->location_name;
+        $this->latitude = $location->latitude;
+        $this->longitude = $location->longitude;
         $this->location_id = $location->id;
-        $this->Edit=true;
+        $this->Edit = true;
     }
 
     public function update()
@@ -78,9 +81,10 @@ class Locations extends Component
         ]);
         $this->resetForm();
         $this->modal = false;
-        $this->Edit=false;
+        $this->Edit = false;
         session()->flash('message', 'Location Updated Successfully.');
     }
+
     public function delete($id)
     {
         \App\Models\Locations::findOrFail($id)->delete();
@@ -90,6 +94,7 @@ class Locations extends Component
     public function render()
     {
         $datas = \App\Models\Locations::all();
+
         return view('livewire.admin.locations', compact('datas'));
     }
 }

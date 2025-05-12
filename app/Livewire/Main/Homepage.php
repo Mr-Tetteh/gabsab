@@ -7,33 +7,40 @@ use App\Models\DailyBundle;
 use App\Models\Data;
 use App\Models\HomeServiceData;
 use App\Models\MonthlyBundle;
-use Carbon\Carbon;
-use Exception;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
-use Throwable;
+use Stevebauman\Location\Facades\Location;
 
 class Homepage extends Component
 {
     #[Layout('layout.user.partials.website-base-user')]
     public $refrence;
+
     public $package;
+
     public $duration;
+
     public $number;
+
     public $user_id;
+
     public $message;
-    public $agent;
+
+    public $agentId;
 
     public $currentStep = 1;
 
     public $modal = false;
 
     public $firstname;
+
     public $lastname;
+
     public $email;
+
     public $phone;
+
     public $username;
 
     public function toggleModal()
@@ -61,10 +68,8 @@ class Homepage extends Component
         } elseif ($this->currentStep == 2) {
             $this->validate([
                 'number' => 'required|numeric|digits:10',
-            ]);
-        } elseif ($this->currentStep == 3) {
-            $this->validate([
                 'package' => 'required',
+
             ]);
         }
 
@@ -73,11 +78,11 @@ class Homepage extends Component
     public function validateAgent()
     {
         $this->validate([
-           'firstname' => 'required',
+            'firstname' => 'required',
             'lastname' => 'required',
             'phone' => 'required|unique:agents,phone',
             'email' => 'required|unique:agents,email',
-            'username' => 'required|unique:agents,username'
+            'username' => 'required|unique:agents,username',
         ]);
     }
 
@@ -101,7 +106,6 @@ class Homepage extends Component
         $this->amount = null;
         $this->user_id = null;
 
-
     }
 
     public function resetAgent()
@@ -121,13 +125,13 @@ class Homepage extends Component
         Data::create([
             'duration' => $this->duration,
             'package' => $this->package,
-            'number' => '233' . substr($this->number, -9),
+            'number' => '233'.substr($this->number, -9),
             'amount' => $this->package,
-            'agent' => $this->agent,
+            'agentId' => $this->agentId,
             'user_id' => '0',
         ]);
-        sendWithSMSONLINEGH('233' . substr($this->number, -9),
-            'Dear Customer your ' . $this->duration . ' Data has been Purchased successfully!! Your Voucher pin is ' . $Voucher . ' Happy browsing.');
+//        sendWithSMSONLINEGH('233'.substr($this->number, -9),
+//            'Dear Customer your '.$this->duration.' Data has been Purchased successfully!! Your Voucher pin is '.$Voucher.' Happy browsing.');
         session()->flash('message', 'Data Purchased successfully. You will receive an SMS soon with your Voucher Pin');
         $this->resetForm();
         $this->redirect('/');
@@ -142,7 +146,7 @@ class Homepage extends Component
             'lastname' => $this->lastname,
             'email' => $this->email,
             'phone' => $this->phone,
-            'username' => $this->username
+            'username' => $this->username,
         ]);
 
         $this->resetAgent();
@@ -153,10 +157,13 @@ class Homepage extends Component
 
     public function render()
     {
+//        $ip = request()->ip();
+//        $response = Http::get("https://ipapi.co/{$ip}/json/");
         $datas = DailyBundle::all();
         $weekly = HomeServiceData::all();
         $monthly = MonthlyBundle::all();
         $agents = Agents::all();
+
         return view('livewire.main.homepage', compact('datas', 'weekly', 'monthly', 'agents'));
     }
 }

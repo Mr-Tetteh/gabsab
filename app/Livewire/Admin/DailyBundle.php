@@ -9,14 +9,23 @@ class DailyBundle extends Component
 {
     #[Layout('layout.admin.partials.website-base-admin')]
     public $name;
+
     public $price;
+
     public $quantity;
+
     public $adv_1;
+
     public $adv_2;
+
     public $adv_3;
+
     public $adv_4;
+
     public $adv_5;
+
     public $unit_id;
+
     public $isEdit = false;
 
     protected $rules = [
@@ -97,6 +106,7 @@ class DailyBundle extends Component
     public function render()
     {
         $datas = \App\Models\DailyBundle::latest()->paginate(5);
+
         return view('livewire.admin.daily_bundle-plans', compact('datas'));
     }
 }
