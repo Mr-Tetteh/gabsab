@@ -3,10 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Data extends Model
 {
-    protected $fillable = ['package', 'duration', 'number', 'amount', 'quantity', 'reference', 'user_id', 'agent'];
+    protected $fillable = ['package', 'duration', 'number', 'amount', 'quantity', 'reference', 'user_id', 'agentId'];
 
     protected static function booted()
     {
@@ -39,5 +40,10 @@ class Data extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function agent()
+    {
+        return $this->belongsTo(\App\Livewire\Admin\Agents::class, 'agentId');
     }
 }

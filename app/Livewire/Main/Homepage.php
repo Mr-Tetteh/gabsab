@@ -27,7 +27,7 @@ class Homepage extends Component
 
     public $message;
 
-    public $agent;
+    public $agentId;
 
     public $currentStep = 1;
 
@@ -127,7 +127,7 @@ class Homepage extends Component
             'package' => $this->package,
             'number' => '233'.substr($this->number, -9),
             'amount' => $this->package,
-            'agent' => $this->agent,
+            'agentId' => $this->agentId,
             'user_id' => '0',
         ]);
 //        sendWithSMSONLINEGH('233'.substr($this->number, -9),

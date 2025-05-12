@@ -95,13 +95,12 @@
                                         <label class="block text-sm font-medium text-gray-700">
                                             Select Agent <span class="text-red-500">*</span>
                                         </label>
-                                        <select wire:model="agent"
+                                        <select wire:model="agentId"
                                                 class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-400 focus:border-green-400 transition-all">
                                             <option value="">Select Agent</option>
                                             <option value="No Agent">No Agent</option>
-
                                         @foreach($agents as $agent)
-                                            <option value="{{$agent->username}}">{{$agent->username}}</option>
+                                            <option value="{{$agent->id}}">{{$agent->username}}</option>
                                             @endforeach
                                         </select>
                                         @error('agent')
