@@ -31,12 +31,7 @@
                                     <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Role
                                     </th>
-                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Gender
-                                    </th>
-                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Date of birth
-                                    </th>
+
                                     <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Date
                                     </th>
@@ -59,12 +54,6 @@
                                         <td class="px-4 py-4 whitespace-nowrap">{{$data->address}}</td>
                                         <td class="px-4 py-4 whitespace-nowrap">
                                             {{$data->role}}
-                                        </td>
-                                        <td class="px-4 py-4 whitespace-nowrap">
-                                            {{$data->gender}}
-                                        </td>
-                                        <td class="px-4 py-4 whitespace-nowrap">
-                                            {{$data->date_of_birth}}
                                         </td>
                                         <td class="px-4 py-4 whitespace-nowrap">
                                             {{$data->created_at->format('jS D Y')}}

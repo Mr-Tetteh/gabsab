@@ -2,12 +2,33 @@
 
 namespace App\Livewire\Admin;
 
+use App\Models\Data;
+use Carbon\Carbon;
+use Livewire\Attributes\Layout;
 use Livewire\Component;
 
 class AgentsHistory extends Component
 {
+    #[Layout('layout.admin.partials.website-base-admin')]
+
+    public $package = [];
+    public $duration;
+
+    public $number;
+
+    public $amount;
+
+    public $quantity;
+
     public function render()
     {
-        return view('livewire.admin.agents-history');
+        $now = Carbon::now();
+
+        $allData = Data::with('agent')->latest()->whereMonth('created_at', $now->month)
+            ->whereYear('created_at', $now->year)->get();
+
+        $datas = $allData->groupBy('agentId');
+
+        return view('livewire.admin.agents-history', compact('datas'));
     }
 }
