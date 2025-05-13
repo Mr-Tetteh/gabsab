@@ -11,7 +11,7 @@ class AgentsHistory extends Component
 {
     #[Layout('layout.admin.partials.website-base-admin')]
 
-    public $package = [];
+    public $package ;
     public $duration;
 
     public $number;
@@ -19,6 +19,7 @@ class AgentsHistory extends Component
     public $amount;
 
     public $quantity;
+    public $refrence;
 
     public function render()
     {
