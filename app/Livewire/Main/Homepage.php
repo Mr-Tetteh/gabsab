@@ -7,6 +7,8 @@ use App\Models\DailyBundle;
 use App\Models\Data;
 use App\Models\HomeServiceData;
 use App\Models\MonthlyBundle;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
@@ -90,6 +92,11 @@ class Homepage extends Component
     {
         $this->currentStep--;
 
+    }
+
+    public function user()
+    {
+        User::where('id', Auth::id());
     }
 
     protected $rules = [
