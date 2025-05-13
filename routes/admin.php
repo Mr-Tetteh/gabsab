@@ -22,6 +22,7 @@ Route::middleware('auth')->group(function () {
         Route::get('weekly_bundle', HomeService::class)->name('admin.home-service-plans')->middleware(EnsureRoleIsAdmin::class);
         Route::get('monthly_bundle', \App\Livewire\Admin\MonthlyBundles::class)->name('admin.monthly')->middleware(EnsureRoleIsAdmin::class);
         Route::get('weekly', Weekly::class)->name('admin.weekly')->middleware(EnsureRoleIsAdmin::class);
+        Route::get('agents_history', \App\Livewire\Admin\AgentsHistory::class)->name('admin.agent_history')->middleware(EnsureRoleIsAdmin::class);
     });
 
 });

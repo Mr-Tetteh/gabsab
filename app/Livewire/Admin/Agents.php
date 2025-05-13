@@ -19,39 +19,8 @@ class Agents extends Component
     public $reference;
     public $duration;
     public $agentData = [];
-    public function openModal()
-    {
-        $this->modal = true;
-    }
-
-    public function closeModal()
-    {
-        $this->modal = false;
-
-        $this->id = null;
-        $this->amount = null;
-        $this->reference = null;
-        $this->number = null;
-        $this->duration = null;
-        $this->package = null;
-        $this->agentData = [];
-
-    }
-
-    public function openAgentModal($agentId)
-    {
-        $this->id = $agentId;
-        $this->openModal();
-        $this->agentBundleData($agentId);
-    }
 
 
-//    public function agentBundleData($agentId)
-//    {
-//        $data =  Data::where('agentId', $agentId)->get();
-//        return view( )
-//
-//    }
 
 
     public function render()

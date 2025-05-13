@@ -44,6 +44,7 @@ class Data extends Model
 
     public function agent()
     {
-        return $this->belongsTo(\App\Livewire\Admin\Agents::class, 'agentId');
+        // Adjust the namespace if your Agent model lives elsewhere
+        return $this->belongsTo(Agents::class, 'agentId', 'id');
     }
 }
