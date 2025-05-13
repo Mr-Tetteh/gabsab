@@ -5,7 +5,8 @@
             <div class="flex flex-col lg:flex-row gap-8">
                 <div class="lg:col-span-2 w-full">
                     <div class="bg-white rounded-xl shadow-lg p-6">
-                        <h3 class="text-2xl font-semibold font-serif text-gray-800 mb-6 text-center">List of all agents </h3>
+                        <h3 class="text-2xl font-semibold font-serif text-gray-800 mb-6 text-center">Monthly Activities
+                            for month of {{now()->format('F')}}  </h3>
                         <div class="overflow-x-auto">
                             <table class="w-full">
                                 @if (session()->has('message'))
@@ -20,78 +21,122 @@
                                         Duration
                                     </th>
                                     <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Package
-                                    </th>
-                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Number
+                                        Data Volume
                                     </th>
                                     <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Amount
                                     </th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Contact
+                                    </th>
 
                                     <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Quantity
+                                        Reference
                                     </th>
 
                                     <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Date
                                     </th>
                                     <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Action
+                                        Time
                                     </th>
 
                                 </tr>
                                 </thead>
-                                    <tbody class="divide-y divide-gray-200">
-                                    @forelse($datas as $agentId => $records)
-                                        <tr>
-                                            <td colspan="7" class="bg-gray-100 font-bold px-4 py-2">
-                                                Agent: {{ $records->first()->agent->username ?? 'Unknown' }}
+                                <tbody class="divide-y divide-gray-200">
+                                @forelse($datas as $agentId => $records)
+                                    <tr>
+                                        <td colspan="7" class="bg-gray-100 font-bold px-4 py-2">
+                                            Agent: {{ $records->first()->agent->username ?? 'Unknown' }}
+                                        </td>
+
+                                    </tr>
+                                    @foreach($records as $data)
+                                        <tr class="hover:bg-gray-50">
+                                            <td class="px-4 py-4 whitespace-nowrap">
+                                                {{ $data->duration }}
+                                            </td>
+                                            <td class="px-4 py-4 whitespace-nowrap">
+                                                @switch($data->duration)
+                                                    @case('Daily')
+                                                        @switch($data->package)
+                                                            @case(2)
+                                                                1 GB
+                                                                @break
+                                                            @case(3)
+                                                                2 GB
+                                                                @break
+                                                            @case(5)
+                                                                3 GB
+                                                                @break
+                                                            @default
+                                                                N/A
+                                                        @endswitch
+                                                        @break
+                                                    @case('Weekly')
+                                                        @switch($data->package)
+                                                            @case(10)
+                                                                2 GB
+                                                                @break
+                                                            @case(15)
+                                                                3 GB
+                                                                @break
+                                                            @case(18)
+                                                                6 GB
+                                                                @break
+                                                            @default
+                                                                N/A
+                                                        @endswitch
+                                                        @break
+                                                    @case('Monthly')
+                                                        @switch($data->package)
+                                                            @case(15)
+                                                                5 GB
+                                                                @break
+                                                            @case(20)
+                                                                10 GB
+                                                                @break
+                                                            @case(30)
+                                                                15 GB
+                                                                @break
+                                                            @default
+                                                                N/A
+                                                        @endswitch
+                                                        @break
+                                                    @default
+                                                        N/A
+                                                @endswitch
+                                            </td>
+
+
+                                            <td class="px-4 py-4 whitespace-nowrap">
+                                                GHC {{ $data->amount }}
+                                            </td>
+                                            <td class="px-4 py-4 whitespace-nowrap">
+                                                {{ $data->number }}
+                                            </td>
+
+                                            <td class="px-4 py-4 whitespace-nowrap">
+                                                {{ $data->reference }}
+                                            </td>
+
+                                            <td class="px-4 py-4 whitespace-nowrap">
+                                                {{ $data->created_at ? $data->created_at->format('jS D Y') : 'N/A' }}
+                                            </td>
+
+                                            <td class="px-4 py-4 whitespace-nowrap">
+                                                {{ $data->created_at ? $data->created_at->format('h:i A') : 'N/A' }}
                                             </td>
 
                                         </tr>
-                                        @foreach($records as $data)
-                                            <tr class="hover:bg-gray-50">
-                                                <td class="px-4 py-4 whitespace-nowrap">
-                                                    {{ $data->duration }}
-                                                </td>
-                                                <td class="px-4 py-4 whitespace-nowrap">
-                                                    {{ $data->package }}
-                                                </td>
-                                                <td class="px-4 py-4 whitespace-nowrap">
-                                                    {{ $data->number }}
-                                                </td>
-                                                <td class="px-4 py-4 whitespace-nowrap">
-                                                    {{ $data->amount }}
-                                                </td>
-                                                <td class="px-4 py-4 whitespace-nowrap">
-                                                    {{ $data->quantity }}
-                                                </td>
-                                                <td class="px-4 py-4 whitespace-nowrap">
-                                                    {{ $data->created_at ? $data->created_at->format('jS D Y') : 'N/A' }}
-                                                </td>
-                                                <td class="px-4 py-4 whitespace-nowrap">
-                                                    <button
-                                                        wire:click="executeFunctions({{ $data->id }})"
-                                                        class="gap-4 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-xl flex items-center space-x-2 transition duration-200 ease-in-out shadow-sm hover:shadow">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
-                                                             viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                                            <circle cx="12" cy="12" r="3"/>
-                                                            <path d="..."/> <!-- your existing path -->
-                                                        </svg>
-                                                        Update Role
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    @empty
-                                        <tr>
-                                            <td colspan="7" class="text-center py-4 text-gray-500">No data available</td>
-                                        </tr>
-                                    @endforelse
-                                    </tbody>
-                          </table>
+                                    @endforeach
+                                @empty
+                                    <tr>
+                                        <td colspan="7" class="text-center py-4 text-gray-500">No data available</td>
+                                    </tr>
+                                @endforelse
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
