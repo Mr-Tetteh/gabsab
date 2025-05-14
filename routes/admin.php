@@ -23,6 +23,7 @@ Route::middleware('auth')->group(function () {
         Route::get('monthly_bundle', \App\Livewire\Admin\MonthlyBundles::class)->name('admin.monthly')->middleware(EnsureRoleIsAdmin::class);
         Route::get('weekly', Weekly::class)->name('admin.weekly')->middleware(EnsureRoleIsAdmin::class);
         Route::get('agents_history', \App\Livewire\Admin\AgentsHistory::class)->name('admin.agent_history')->middleware(EnsureRoleIsAdmin::class);
+        Route::get('agent_work_history', \App\Livewire\Admin\AgentsWorkHistory::class)->name('admin.agent_work_history');
         Route::get('user_data_purchase', \App\Livewire\Admin\UserDataPurchase::class)->name('admin.user_data_purchase');
     });
 

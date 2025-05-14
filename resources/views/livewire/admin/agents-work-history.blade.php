@@ -5,8 +5,9 @@
             <div class="flex flex-col lg:flex-row gap-8">
                 <div class="lg:col-span-2 w-full">
                     <div class="bg-white rounded-xl shadow-lg p-6">
-                        <h3 class="text-2xl font-semibold font-serif text-gray-800 mb-6 text-center">Monthly Activities
-                            for month of {{now()->format('F')}}  </h3>
+                        <h3 class="text-2xl font-semibold font-serif text-gray-800 mb-6 text-center">All Time Agent Working Actives
+                            Activities
+                        </h3>
                         <div class="overflow-x-auto">
                             <table class="w-full">
                                 @if (session()->has('message'))
