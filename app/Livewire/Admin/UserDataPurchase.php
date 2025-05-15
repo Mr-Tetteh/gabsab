@@ -95,13 +95,14 @@ class UserDataPurchase extends Component
             'number' => '233'.substr($this->contact, -9),
             'amount' => $this->package,
             'agentId' => $this->agentId,
-            'user_id' => '0',
+            'user_id' => Auth::id()
         ]);
-        sendWithSMSONLINEGH('233'.substr($this->contact, -9),
-            'Dear Customer your '.$this->duration.' Data has been Purchased successfully!! Your Voucher pin is '
-            .$Voucher.' Happy browsing.');
+//        sendWithSMSONLINEGH('233'.substr($this->contact, -9),
+//            'Dear Customer your '.$this->duration.' Data has been Purchased successfully!! Your Voucher pin is '
+//            .$Voucher.' Happy browsing.');
         session()->flash('message', 'Data Purchased successfully. You will receive an SMS soon with your Voucher Pin');
         $this->resetForm();
+        $this->redirect('user_data_purchase');
 
 
     }
@@ -112,6 +113,7 @@ class UserDataPurchase extends Component
         $datas = DailyBundle::all();
         $weekly = HomeServiceData::all();
         $monthly = MonthlyBundle::all();
-        return view('livewire.admin.user-data-purchase', compact('datas', 'weekly', 'monthly'));
+        $userDataHistory = Data::where('user_id', Auth::id())->latest()->paginate(10);
+        return view('livewire.admin.user-data-purchase', compact('datas', 'weekly', 'monthly', 'userDataHistory'));
     }
 }
