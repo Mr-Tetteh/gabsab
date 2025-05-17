@@ -171,7 +171,7 @@
                                                         >
                                                             <option value="" disabled>Select a Role</option>
                                                             <option value="admin">Admin</option>
-                                                            <option value="reseller">Reseller</option>
+                                                            <option value="super_admin">Supper Admin</option>
                                                             <option value="user">User</option>
                                                         </select>
                                                         <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
