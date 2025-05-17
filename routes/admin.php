@@ -25,6 +25,7 @@ Route::middleware('auth')->group(function () {
         Route::get('agents_history', \App\Livewire\Admin\AgentsHistory::class)->name('admin.agent_history')->middleware(EnsureRoleIsAdmin::class);
         Route::get('agent_work_history', \App\Livewire\Admin\AgentsWorkHistory::class)->name('admin.agent_work_history');
         Route::get('user_data_purchase', \App\Livewire\Admin\UserDataPurchase::class)->name('admin.user_data_purchase');
+        Route::get('user_dashboard', \App\Livewire\Admin\UserDashboard::class)->name('admin.user_dashboard');
     });
 
 });
