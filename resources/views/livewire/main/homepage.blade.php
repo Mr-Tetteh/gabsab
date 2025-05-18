@@ -18,7 +18,7 @@
                         <h1 class="text-5xl lg:text-7xl font-black text-white mb-6">
                             ASHANTI
                             <span class="bg-gradient-to-r from-green-400 to-yellow-400 bg-clip-text text-transparent">
-                            HOTSPOT
+                            WIFI
                             </span>
                         </h1>
 
