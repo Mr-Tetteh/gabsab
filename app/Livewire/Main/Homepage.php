@@ -137,8 +137,8 @@ class Homepage extends Component
             'agentId' => $this->agentId,
             'user_id' => '0',
         ]);
-//        sendWithSMSONLINEGH('233'.substr($this->number, -9),
-//            'Dear Customer your '.$this->duration.' Data has been Purchased successfully!! Your Voucher pin is '.$Voucher.' Happy browsing.');
+        sendWithSMSONLINEGH('233'.substr($this->number, -9),
+            'Dear Customer your '.$this->duration.' Data has been Purchased successfully!! Your Voucher pin is '.$Voucher.' Happy browsing.');
         session()->flash('message', 'Data Purchased successfully. You will receive an SMS soon with your Voucher Pin');
         $this->resetForm();
         $this->redirect('/');

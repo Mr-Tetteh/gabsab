@@ -6,6 +6,7 @@ use App\Models\Data;
 use Carbon\Carbon;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
+use phpDocumentor\Reflection\Types\Integer;
 
 class AgentsHistory extends Component
 {
@@ -25,7 +26,7 @@ class AgentsHistory extends Component
     {
         $now = Carbon::now();
 
-        $allData = Data::with('agent')->latest()->whereMonth('created_at', $now->month)
+        $allData = Data::with('agent')->whereNotNull('agentId')->latest()->whereMonth('created_at', $now->month)
             ->whereYear('created_at', $now->year)->get();
 
         $datas = $allData->groupBy('agentId');
